@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Classe25 Real State Solutions Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="bootstrap.min.css">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link rel="icon" href="img/Logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+/* === ESTILO GERAL E CORES === */
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #c1a24b; /* dourado suave */
+  --dark-color: #003300;    /* verde escuro institucional */
+  --light-bg: #f9f9f9;
+  --transition-speed: 0.3s;
+
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background-color: var(--light-bg);
+  scroll-behavior: smooth;
+  margin: 0;  
+  margin-top: 70px; /* espaço para header fixo */
+}
+
+/* === HEADER === */
+header {
+  background-color: var(--dark-color);
+  padding: 12px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a, header span {
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* === NAVBAR - Cabeçalho === */
+.nav-link {
+  color: white !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #c1a24b !important;
+  background-color: transparent !important;
+}
+
+/* === HERO SECTION COM IMAGEM === */
+.hero-section {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.carousel-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 100%;
+  display: flex;
+  animation: slide 20s infinite ease-in-out;
+  z-index: 0;
+}
+
+.carousel-images img {
+  width: 100vw;
+  height: 85vh;
+  object-fit: cover;
+  flex: 0 0 100vw;
+  display: block;
+  filter: brightness(90%) contrast(105%); /* Imagem mais nítida e clara */
+}
+
+.overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25); /* Menos escuro */
+  backdrop-filter: none; /* Remover blur */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 90%;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(0); }
+  25%  { transform: translateX(-100vw); }
+  45%  { transform: translateX(-100vw); }
+  50%  { transform: translateX(-200vw); }
+  70%  { transform: translateX(-200vw); }
+  75%  { transform: translateX(-300vw); }
+  95%  { transform: translateX(-300vw); }
+  100% { transform: translateX(0); }
+}
+
+/* === BOTÕES === */
+.btn-primary, .btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: #333 !important;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn-primary:hover, .btn:hover {
+  background-color: #c1a24b;
+  transform: translateY(-2px);
+}
+
+/* === ESTRUTURA PADRÃO === */
+section {
+  padding: 80px 20px;
+}
+
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: bold;
+}
+
+footer {
+  background-color: var(--dark-color);
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+/* === BOTÕES DE REDES SOCIAIS === */
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 5px;
+  background-color: #003300; /* fundo verde escuro */
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  font-size: 18px;
+}
+
+.social-icons a:hover {
+  background-color: #c1a24b; /* dourado suave */
+  color: #003300;
+}
+
+
+.img-fluid {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form .form-control {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(240, 231, 208, 0.5);
+}
+
+form .btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: #333;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+form .btn:hover {
+  background-color: #c1a24b;
+  transform: translateY(-2px);
+}
+
+/* === SOBRE NÓS === */
+#about {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.about-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.left-side, .right-side {
+  flex: 1 1 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Alinha verticalmente ao centro */
+  align-items: flex-start; /* Alinha à esquerda */
+  gap: 20px; /* Espaço entre imagem, botões e texto */
+}
+
+.left-side img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.tab-content {
+  max-width: 100%;
+}
+
+.left-inner {
+  padding-top: 0;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #e0e0e0;
+  color: #333;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab-btn.active {
+  background-color: #c1a24b;
+  color: #333;
+}
+
+.tab-content .tab-panel {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.tab-panel p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.right-side h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #c1a24b;
+}
+
+.right-side p {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.right-side img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.left-side img {
+  max-height: 260px;
+  object-fit: cover;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* === EFEITOS DE INTERAÇÃO === */
+a, button {
+  transition: all 0.3s ease;
+}
+
+.brand-title {
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover, button:hover {
+  transform: scale(1.05);
+  background-color: transparent;
+  color: #c1a24b;
+}
+
+
+a:focus, button:focus {
+  outline: 2px solid #c1a24b; 
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+/* ======FOOTER======== */
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+  padding: 20px 0; /* Reduzir altura do footer */
+  font-size: 0.9rem; /* Reduz o tamanho da letra */
+  line-height: 1.4;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1 1 300px;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-logo {
+  width: 100px; /* ligeiramente menor */
+  margin-bottom: 10px;
+}
+
+.footer-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-right a:hover {
+  color: var(--primary-color);
+}
+
+footer .social-icons {
+  margin-top: 10px;
+}
+
+footer .social-icons a {
+  background-color: #fff;
+  color: #003300;
+  margin-left: 10px;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+footer .social-icons a:hover {
+  background-color: var(--primary-color);
+  color: #003300;
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: #ccc;
+  padding-bottom: 10px;
+}
+
+
+/*===========PORTEFÓLIO================*/
+
+#portfolio {
+  background-color: #f5f5f5;
+  padding: 80px 20px;
+}
+
+#portfolio h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+#portfolio p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.portfolio-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.portfolio-buttons .btn {
+  padding: 15px 30px;
+  font-size: 1rem;
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <a href="#" class="d-flex align-items-center" aria-label="Ir para a página inicial">
+        <img src="img/Logo.png" alt="Logotipo" width="45">
+        <span class="brand-title ms-2">Classe25 Real State Solutions Team</span>
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav">
+          <li class="nav-item"><a href="#contact" class="nav-link">Entre em Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section" role="banner">
+  <div class="carousel-images">
+    <img src="img/cidade1.png" alt="Cidade 1">
+    <img src="img/cidade2.png" alt="Cidade 2">
+    <img src="img/cidade3.jpeg" alt="Cidade 3">
+    <img src="img/cidade4.png" alt="Cidade 4">
+  </div>
+  <div class="overlay"></div>
+  <div class="hero-content">
+  <h1>Classe25 Real Estate Solutions</h1>
+  <p>Mediação imobiliária com confiança, proximidade e soluções personalizadas.</p>
+  <a href="#about" class="btn btn-lg" aria-label="Saiba mais sobre a Classe25">Saber Mais</a>
+</div>
+
+</section>
+
+    <section id="about">
+      <div class="about-wrapper">
+        <!-- Coluna Esquerda: Missão, Valores, Visão -->
+        <div class="left-side">
+  <img src="img/missao.png" alt="Missão, Valores e Visão" class="img-fluid">
+  
+  <div class="tab-buttons">
+    <button class="tab-btn active" data-tab="missao">📘 Missão</button>
+    <button class="tab-btn" data-tab="valores">🧭 Valores</button>
+    <button class="tab-btn" data-tab="visao">🔭 Visão</button>
+  </div>
+  
+  <div class="left-inner">
+    <div class="tab-content">
+      <div id="missao" class="tab-panel active">
+        <h3>A Nossa Missão</h3>
+        <p>
+          Prestar um serviço de excelência em mediação e consultoria imobiliária, com base no conhecimento académico e
+          experiência no setor, promovendo soluções integradas para acompanhar cada cliente em todas as fases do processo.
+        </p>
+      </div>
+      <div id="valores" class="tab-panel">
+        <h3>Os Nossos Valores</h3>
+        <p>
+          Ética, confiança, identidade e cultura são os pilares do nosso trabalho. Valorizamos o compromisso com o cliente,
+          a colaboração em equipa e a procura constante pela excelência.
+        </p>
+      </div>
+      <div id="visao" class="tab-panel">
+        <h3>A Nossa Visão</h3>
+        <p>
+          Ser uma referência nacional no setor imobiliário, integrando mediação, avaliação e construção com inovação e rigor.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+        <!-- Coluna Direita: Sobre Nós -->
+        <div class="right-side">
+          <h2>Sobre Nós</h2>
+<p>
+  A Classe25 Real Estate Solutions é uma equipa dinâmica e dedicada, do Grupo Desafios da empresa Decisões e Soluções, uma das maiores redes de consultoria imobiliária e financeira em Portugal. 
+  Atuamos maioritariamente na região centro do país, oferecendo um acompanhamento próximo, transparente e personalizado em todas as fases do processo de compra, venda ou arrendamento de imóveis.
+  A nossa missão é transformar projetos em realidade, com base na confiança, no profissionalismo e numa abordagem centrada nas necessidades de cada cliente.
+</p>
+
+          <img src="img/about.png" alt="Ilustração sobre o nosso trabalho">
+        </div>
+      </div>
+    </section>
+    
+    
+<section id="portfolio">
+  <div class="container text-center">
+    <img src="img/19TV.webp" alt="Imóveis" class="img-fluid mb-4" style="max-height: 250px;">
+    <h2>O Nosso Portfólio</h2>
+    <hr style="width: 60px; height: 4px; background-color: var(--primary-color); border: none; margin: 20px auto;">
+    <p class="lead">Explore os imóveis disponíveis e comprove os negócios já concretizados com confiança e transparência.</p>
+    <div class="portfolio-buttons">
+      <a href="imoveis_venda.html" class="btn btn-lg">🏡 Imóveis para Venda</a>
+      <a href="imoveis_vendidos.html" class="btn btn-lg">✅ Imóveis Vendidos</a>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="contact">
+  <div class="container">
+    <h1 class="text-center mb-5">Entre em Contacto</h1>
+    <div class="row align-items-center">
+      
+      <!-- Coluna do Texto Informativo -->
+      <div class="col-md-8 mt-4 mt-md-0">
+        <div class="p-4 bg-light rounded shadow-sm h-100 d-flex flex-column justify-content-center">
+          <h5 class="mb-3">📞 Contacte-nos</h5>
+          <p>Pronto para tomar decisões mais informadas com base em dados sólidos?</p>
+          <strong>Entre em contacto connosco hoje mesmo.</strong></p>
+          
+          <p class="mt-3 mb-0">
+            📞 (+351) 912 383 894 <br>
+            📧 miguelfigueiredo@decisoesesolucoes.com
+          </p>
+        </div>
+      </div>
+
+      <!-- Coluna do Formulário (mais pequena) -->
+      <div class="col-md-4">
+        <form target="_blank" action="https://formsubmit.co/migueljeronimofigueiredo@gmail.com" method="POST">
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col">
+                <input type="text" name="name" class="form-control" placeholder="Nome" required>
+              </div>
+            </div>
+            <div class="form-row mt-2">
+              <div class="col">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <textarea placeholder="A sua mensagem" class="form-control" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-lg btn-dark mt-3 w-100">Enviar</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <img src="imagens/logo-desafios.png" alt="Grupo Desafios" class="footer-logo" />
+      <p><strong>Classe25 Real Estate Solutions</strong></p>
+      <p>Mediação Imobiliária, Consultoria e Apoio ao Investimento</p>
+      <p>Desafios de Escolha, Mediação Imobiliária Lda. / AMI 9449</p>
+      <p>Torres Novas | Santarém</p>
+    </div>
+
+    <div class="footer-right">
+      <p><strong>Contactos</strong></p>
+      <p>📞 <a href="tel:+351912383894">+351 912 383 894</a></p>
+      <p>✉️ <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">miguelfigueiredo@decisoesesolucoes.com</a></p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">&copy; 2025 Classe25. Todos os direitos reservados.</p>
+</footer>
+
+
+
+</body>
+
+
+
+<!-- Chatbot flutuante -->
+<div id="chatbot">
+  <div id="chatbot-toggle" role="button" aria-label="Abrir chatbot">💬</div>
+  <div id="chatbot-window">
+    <div id="chatbot-header">Ajuda Rápida</div>
+    <div id="chatbot-keywords-wrapper">
+  <div id="chatbot-keywords-header">Palavras-chave</div>
+  <div id="chatbot-keywords-container">
+    <button class="arrow-button" onclick="scrollKeywords(-1)">&#9664;</button>
+    <div id="chatbot-keywords">
+      <span class="keyword">preço</span>
+      <span class="keyword">investimento</span>
+      <span class="keyword">mercado</span>
+      <span class="keyword">contacto</span>
+      <span class="keyword">base de dados</span>
+      <span class="keyword">ferramenta</span>
+      <span class="keyword">avaliação</span>
+      <span class="keyword">rentabilidade</span>
+      <span class="keyword">zona</span>
+      <span class="keyword">consultor</span>
+      <span class="keyword">documentação</span>
+      <span class="keyword">simulador</span>
+      <span class="keyword">dashboard</span>
+      <span class="keyword">ajuda</span>
+    </div>
+    <button class="arrow-button" onclick="scrollKeywords(1)">&#9654;</button>
+  </div>
+</div>
+
+
+
+    <div id="chatbot-messages"></div>
+    
+
+    <input type="text" id="chatbot-input" placeholder="Escreva uma palavra...">
+    <button id="chatbot-send">Enviar</button>
+  </div>
+</div>
+
+<style>
+  /* === Chatbot Flutuante === */
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-family: Arial, sans-serif;
+}
+
+/* === Botão Redondo === */
+#chatbot-toggle {
+  background-color: rgb(142, 122, 73);
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-size: 32px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#chatbot-toggle:hover {
+  transform: rotate(45deg);
+  background-color: rgb(142, 122, 73);
+}
+
+/* === Janela do Chat === */
+#chatbot-window {
+  width: 320px;
+  max-height: 80vh;
+  height: auto;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#chatbot-window.active {
+  display: flex;
+}
+
+/* === Cabeçalho === */
+#chatbot-header {
+  background-color: rgb(172, 149, 94);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* === Mensagens === */
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* === Balões de conversa === */
+.chatbot-user,
+.chatbot-bot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-user {
+  flex-direction: row-reverse;
+}
+
+.chatbot-message {
+  padding: 8px 15px;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.chatbot-user .chatbot-message {
+  background-color: #e0f7fa;
+  color: #333;
+}
+
+.chatbot-bot .chatbot-message {
+  background-color: #967d4f;
+  color: #fff;
+}
+
+.chatbot-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+/* === Palavras-chave === */
+#chatbot-keywords-wrapper {
+  background-color: #f8f8f8;
+  padding: 8px 10px 5px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#chatbot-keywords-header {
+  font-size: 13px;
+  font-weight: bold;
+  color: #6e5e3e;
+  margin-bottom: 6px;
+}
+
+#chatbot-keywords-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+#chatbot-keywords {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  flex: 1;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+#chatbot-keywords::-webkit-scrollbar {
+  display: none;
+}
+
+.keyword {
+  background-color: #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.keyword:hover {
+  background-color: #c2b18c;
+}
+
+.arrow-button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  color: #967d4f;
+  cursor: pointer;
+  padding: 4px 6px;
+  user-select: none;
+}
+
+/* === Sugestões rápidas === */
+.chat-suggestions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.chat-suggestions button {
+  background-color: rgb(172, 149, 94);
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.chat-suggestions button:hover {
+  background-color: #bba77c;
+}
+
+/* === Input e botão de envio === */
+#chatbot-input {
+  border: 1px solid #ccc;
+  padding: 12px;
+  width: calc(100% - 90px);
+  font-size: 14px;
+  border-radius: 25px;
+  transition: border-color 0.3s ease;
+  margin: 5px;
+}
+
+#chatbot-send {
+  background-color: rgb(172, 149, 94);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.2s ease;
+}
+
+#chatbot-send:hover {
+  background-color: #bba77c;
+}
+
+
+
+/* === Responsivo (opcional) === */
+@media (max-width: 480px) {
+  #chatbot-window {
+    width: 95vw;
+    max-height: 85vh;
+  }
+}
+
+
+
+</style>
+
+<script>
+  const toggle = document.getElementById('chatbot-toggle');
+  const windowChat = document.getElementById('chatbot-window');
+  const sendBtn = document.getElementById('chatbot-send');
+  const input = document.getElementById('chatbot-input');
+  const messages = document.getElementById('chatbot-messages');
+
+  const avatarBot = "https://cdn-icons-png.flaticon.com/512/4712/4712107.png";
+  const avatarUser = "https://cdn-icons-png.flaticon.com/512/1144/1144760.png";
+
+  const respostas = {
+  "preço": "O preço é definido com base no mercado atual, localização e características do imóvel.",
+  "investimento": "Investimento é a aplicação de capital com expectativa de retorno financeiro. Podemos ajudar a simular diferentes cenários.",
+  "mercado": "O mercado imobiliário varia consoante a procura, oferta e zona geográfica. Use o nosso dashboard para explorar dados.",
+  "contacto": "Pode contactar-nos através do <a href='#contact'>formulário</a> ou pelas redes sociais.",
+  "base de dados": "A nossa base de dados inclui todos os imóveis disponíveis com detalhes atualizados.",
+  "ferramenta": "Utilize as ferramentas do site para calcular rentabilidade, simular cenários e comparar imóveis.",
+  "avaliação": "A avaliação estima o valor de um imóvel com base em dados comparativos e tendências de mercado.",
+  "rentabilidade": "A rentabilidade representa o retorno do investimento, geralmente expresso em percentagem anual.",
+  "zona": "A localização é um dos fatores que mais influencia o valor e o potencial de valorização de um imóvel.",
+  "consultor": "Os nossos consultores especializados estão prontos para o apoiar na escolha do melhor investimento.",
+  "documentação": "A documentação necessária inclui certidão permanente, licença de utilização e caderneta predial.",
+  "simulador": "O simulador permite calcular retorno esperado, custos e prazos de investimento. Experimente na nossa secção de ferramentas.",
+  "dashboard": "O dashboard interativo apresenta dados sobre preço médio, número de imóveis e rentabilidade por zona.",
+  "ajuda": "Pode escrever palavras como 'preço', 'rentabilidade', 'consultor' ou 'dashboard'. Estamos aqui para ajudar!"
+};
+
+
+  toggle.addEventListener('click', () => {
+    windowChat.classList.toggle('active');
+  });
+
+  sendBtn.addEventListener('click', enviarMensagem);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      enviarMensagem();
+    }
+  });
+
+  function enviarTexto(texto) {
+    input.value = texto;
+    enviarMensagem();
+  }
+
+  function enviarMensagem() {
+    const texto = input.value.trim();
+    if (texto === "") return;
+
+    adicionarMensagem(texto, 'user');
+
+    let resposta = "Desculpe, não reconheço essa palavra. Tente escrever algo como 'preço', 'rentabilidade', 'zona' ou 'dashboard'.";
+
+
+    for (const palavra in respostas) {
+      if (texto.toLowerCase().trim() === palavra.toLowerCase()) {
+        resposta = respostas[palavra];
+        break;
+      }
+    }
+
+    setTimeout(() => {
+      adicionarMensagem(resposta, 'bot');
+    }, 500);
+
+    input.value = "";
+  }
+
+  function adicionarMensagem(texto, tipo) {
+    const container = document.createElement('div');
+    container.className = tipo === 'user' ? 'chatbot-user' : 'chatbot-bot';
+
+    const avatar = document.createElement('img');
+    avatar.src = tipo === 'user' ? avatarUser : avatarBot;
+    avatar.className = 'chatbot-avatar';
+
+    const message = document.createElement('div');
+    message.className = 'chatbot-message';
+    message.innerHTML = texto;
+
+    if (tipo === 'user') {
+      container.appendChild(message);
+      container.appendChild(avatar);
+    } else {
+      container.appendChild(avatar);
+      container.appendChild(message);
+    }
+
+    messages.appendChild(container);
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
+
+
+
+
+
+
+
+<script>
+  // JS simples para troca de tabs
+  const tabs = document.querySelectorAll(".tab-btn");
+  const panels = document.querySelectorAll(".tab-panel");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(btn => btn.classList.remove("active"));
+      panels.forEach(panel => panel.classList.remove("active"));
+
+      tab.classList.add("active");
+      const target = document.getElementById(tab.dataset.tab);
+      target.classList.add("active");
+    });
+  });
+</script>
+ 
+<script>
+  document.querySelector('a[href="#contato"]').addEventListener('click', function(e) {
+    e.preventDefault();
+  
+  document.querySelector('#contato').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+});
+</script>
+
+<script>
+  function scrollKeywords(direction) {
+    const keywords = document.getElementById('chatbot-keywords');
+    const scrollAmount = 100;
+    keywords.scrollLeft += direction * scrollAmount;
+  }
+
+  // Torna as palavras clicáveis
+  document.querySelectorAll('#chatbot-keywords .keyword').forEach(keyword => {
+    keyword.addEventListener('click', () => {
+      enviarTexto(keyword.textContent.trim());
+    });
+  });
+</script>
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imóveis Vendidos | Classe25</title>
+  <link rel="icon" href="img/Logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #c1a24b;
+      --dark-color: #003300;
+      --light-bg: #f9f9f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--dark-color);
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .container.header-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      height: 45px;
+    }
+
+    .brand-title {
+      font-weight: 600;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .brand-title:hover {
+      color: var(--primary-color);
+    }
+
+    .properties-section {
+      flex: 1;
+      padding: 100px 20px 60px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+    }
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas em ecrãs grandes */
+  gap: 30px;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.property-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.property-card:hover {
+  transform: translateY(-5px);
+}
+
+.property-card img {
+  width: 100%;
+  height: 240px; /* Imagem mais pequena */
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body h3 {
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.card-body .price {
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.card-body .btn {
+  margin-top: auto;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.card-body .btn:hover {
+  background-color: #d4b55e;
+}
+
+    footer {
+      background-color: var(--dark-color);
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 20px 0 10px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-left, .footer-right {
+      flex: 1 1 300px;
+    }
+
+    .footer-left {
+      text-align: left;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-logo {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+
+    .footer-right a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-right a:hover {
+      color: var(--primary-color);
+    }
+
+    .social-icons a {
+      background-color: #fff;
+      color: #003300;
+      margin-left: 10px;
+      width: 36px;
+      height: 36px;
+      display: inline-block;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .social-icons a:hover {
+      background-color: var(--primary-color);
+      color: #003300;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #ccc;
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-container">
+    <a href="index.html">
+      <img src="img/Logo.png" alt="Logo Classe25" class="logo">
+    </a>
+    <a href="index.html" class="brand-title">Classe25 Real State Solutions Team</a>
+  </div>
+</header>
+
+<section class="properties-section">
+  <h2>Imóveis Vendidos</h2>
+  <div class="property-grid">
+
+    <div class="property-card">
+      <img src="img/apvendidoentronc.jpg" alt="Apartamento T2+1 Entroncamento">
+      <div class="card-body">
+        <h3>Apartamento T2+1 no Entroncamento</h3>
+        <p class="price">110.000€</p>
+        
+      </div>
+    </div>
+
+    <div class="property-card">
+      <img src="img/apvendidot2.jpg" alt="Ap Entronc T2">
+      <div class="card-body">
+        <h3>Apartamento T2 Entroncamento</h3>
+        <p class="price">158.500€</p>
+        
+      </div>
+    </div>
+
+     <div class="property-card">
+      <img src="img/moradiatomarvendida.jpg" alt="Moradia Tomar">
+      <div class="card-body">
+        <h3>Moradia T4 em Tomar - Casais</h3>
+        <p class="price">130.000€</p>
+        
+      </div>
+    </div>
+
+    <div class="property-card">
+      <img src="img/apeentronct3.jpg" alt="Ap Entronc T3">
+      <div class="card-body">
+        <h3>Apartamento T3 Entroncamento</h3>
+        <p class="price">245.000€</p>
+        
+      </div>
+    </div>
+
+    <div class="property-card">
+      <img src="img/entroncap.jpg" alt="Ap Entronc T3">
+      <div class="card-body">
+        <h3>Apartamento T3 Entroncamento</h3>
+        <p class="price">227.500€</p>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <img src="img/logo-grupo-desafios.png" alt="Grupo Desafios" class="footer-logo">
+      <p><strong>Classe25 Real State Solutions</strong></p>
+      <p>Uma equipa da Desafios de Escolha, Mediação Imobiliária Lda. / AMI 9449</p>
+    </div>
+    <div class="footer-right">
+      <p><strong>Contactos</strong></p>
+      <p>📞 <a href="tel:+351912383894">+351 912 383 894</a></p>
+      <p>✉️ <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">miguelfigueiredo@decisoesesolucoes.com</a></p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">&copy; 2025 Classe25 Real State Solutions Team. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
