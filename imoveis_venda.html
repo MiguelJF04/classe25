@@ -1,309 +1,338 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Imóveis para Venda | Classe25</title>
-  <link rel="icon" href="img/Logo.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Imóveis para Venda | Classe25 Solutions</title>
+  <meta name="description" content="Imóveis para venda — Classe25 Solutions. Consulte imóveis disponíveis e reservados.">
+  <link rel="icon" type="image/png" href="img/Logo.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
-:root {
-      --primary-color: #c1a24b;
-      --dark-color: #003300;
-      --light-bg: #f9f9f9;
-    }
+  :root{--primary:#c1a24b;--dark:#003300;--bg:#f9f9f9;--radius:14px}
+  body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#333}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  /* Navbar */
+  .navbar{background:var(--dark)}
+  .navbar .nav-link,.navbar-brand{color:#fff!important}
+  .navbar .nav-link:hover{color:var(--primary)!important}
 
-    html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--light-bg);
-      color: #333;
-    }
+  /* Hero */
+  .hero-slim{background:#fff;padding:70px 0 40px}
+  .badge-pill{background:var(--primary);color:#111;border-radius:999px;padding:.4rem .9rem;font-weight:700}
 
-    body {
-      display: flex;
-      flex-direction: column;
-    }
+  /* Stats */
+  .stats-row .stat{display:flex;gap:10px;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;box-shadow:0 8px 22px rgba(0,0,0,.06)}
+  .stat-icon{font-size:22px}
+  .stat-value{font-weight:700;font-size:1.25rem}
+  .stat-label{font-size:.9rem;color:#666}
 
-    header {
-      background-color: var(--dark-color);
-      padding: 12px 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
+  /* ===== GRID: 1 col (mobile), 2 col (tablet), 3 col (desktop) ===== */
+  .property-grid{
+    display:grid; gap:20px;
+    grid-template-columns: 1fr;                 /* mobile */
+  }
+  @media (min-width:768px){
+    .property-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width:992px){
+    .property-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
 
-    .container.header-container {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+  /* ===== Flip controlado por clique (NÃO por hover) ===== */
+  .flip-card{ position:relative; width:100%; height:400px; perspective:1000px; }
+  @media (max-width:575.98px){ .flip-card{ height:440px; } }
 
-    .logo {
-      height: 45px;
-    }
+  .flip-card-inner{
+    position:relative; width:100%; height:100%;
+    transform-style:preserve-3d; transition:transform 1.05s ease;
+  }
+  /* remove qualquer efeito por :hover */
+  .flip-card:hover .flip-card-inner{ transform:none; }
+  /* roda apenas quando adicionamos .flipped via JS */
+  .flip-card.flipped .flip-card-inner{ transform:rotateY(180deg); }
 
-    .brand-title {
-      font-weight: 600;
-      font-size: 18px;
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+  /* Faces do card */
+  .flip-card-front, .flip-card-back{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius: var(--radius); overflow:hidden;
+    box-shadow:0 10px 22px rgba(0,0,0,.10);
+    display:flex; flex-direction:column;
+  }
 
-    .brand-title:hover {
-      color: var(--primary-color);
-    }
+  /* Frente */
+  .flip-card-front img{
+    width:100%; height:260px; object-fit:cover; object-position:center; display:block;
+  }
+  .property-body{ padding:16px }
+  .property-body h5{ margin-bottom:6px; font-size:1.06rem }
+  .location{ color:#666; margin-bottom:4px }
+  .price{ font-weight:700; color:var(--dark); margin-top:4px }
 
-    .properties-section {
-      flex: 1;
-      padding: 100px 20px 60px;
-      max-width: 1200px;
-      margin: auto;
-    }
+  /* Verso */
+  .flip-card-back{
+    background:var(--dark); color:#fff; transform:rotateY(180deg);
+    justify-content:center; align-items:center; text-align:center; padding:20px;
+  }
+  .flip-card-back p{ font-size:.95rem; margin-bottom:14px }
+  .btn-saiba{
+    background:var(--primary); border:none; color:#222; font-weight:600;
+    padding:.5rem 1rem; border-radius:8px; text-decoration:none
+  }
+  .btn-saiba:hover{ filter:brightness(1.08) }
 
-    h2 {
-      text-align: center;
-      color: var(--primary-color);
-      margin-bottom: 40px;
-    }
+  /* Etiqueta 'Reservado' */
+  .ribbon-reservado{
+    position:absolute; top:10px; left:10px; z-index:5;
+    background:#ffc107; color:#111; font-weight:700;
+    padding:6px 10px; border-radius:999px; font-size:.85rem;
+  }
 
-.property-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas em ecrãs grandes */
-  gap: 30px;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  /* Botão seta no canto inferior direito (nas duas faces) */
+  .flip-toggle{
+    position:absolute; right:12px; bottom:12px; z-index:6;
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:#ffffffdd; border:none; cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+  }
+  .flip-card-back .flip-toggle{ background:#f2f2f2ee; }
+  .flip-toggle:focus{ outline:2px solid var(--primary); outline-offset:2px }
 
+  /* Footer (mantido) */
+  footer{background:var(--dark);color:#fff}
+  .footer-note{color:#cfd6cf}
+  footer img{height:50px;width:auto}
 
-.property-card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform 0.3s;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+  /* Extras */
+  .flip-card:hover .flip-card-inner { transform: none; }  /* sem flip por hover */
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }  /* flip só com clique */
 
-.property-card:hover {
-  transform: translateY(-5px);
-}
+</style>
 
-.property-card img {
-  width: 100%;
-  height: 240px; /* Imagem mais pequena */
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 20px;
-  text-align: center;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-body h3 {
-  margin-bottom: 10px;
-  font-size: 1.4rem;
-}
-
-.card-body .price {
-  font-size: 1.1rem;
-  color: var(--dark-color);
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.card-body .btn {
-  margin-top: auto;
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: var(--primary-color);
-  color: #333;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: background-color 0.3s;
-}
-
-.card-body .btn:hover {
-  background-color: #d4b55e;
-}
-
-    footer {
-      background-color: var(--dark-color);
-      color: #fff;
-      font-size: 0.9rem;
-      padding: 20px 0 10px;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 40px;
-    }
-
-    .footer-left, .footer-right {
-      flex: 1 1 300px;
-    }
-
-    .footer-left {
-      text-align: left;
-    }
-
-    .footer-right {
-      text-align: right;
-    }
-
-    .footer-logo {
-      width: 100px;
-      margin-bottom: 10px;
-    }
-
-    .footer-right a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .footer-right a:hover {
-      color: var(--primary-color);
-    }
-
-    .social-icons a {
-      background-color: #fff;
-      color: #003300;
-      margin-left: 10px;
-      width: 36px;
-      height: 36px;
-      display: inline-block;
-      line-height: 36px;
-      text-align: center;
-      border-radius: 50%;
-      transition: 0.3s;
-      font-size: 16px;
-    }
-
-    .social-icons a:hover {
-      background-color: var(--primary-color);
-      color: #003300;
-    }
-
-    .footer-note {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: #ccc;
-      padding-bottom: 10px;
-    }
-
-.ribbon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #c1a24b;
-  color: white;
-  padding: 5px 10px;
-  font-weight: bold;
-  font-size: 0.85rem;
-  border-radius: 5px;
-  z-index: 2;
-}
-.property-card {
-  position: relative;
-}
-
-
-  </style>
 </head>
 <body>
 
-<header>
-  <div class="container header-container">
-    <a href="index.html">
-      <img src="img/Logo.png" alt="Logo Classe25" class="logo">
-    </a>
-    <a href="index.html" class="brand-title">Classe25 Real State Solutions Team</a>
-  </div>
-</header>
-
-<section class="properties-section">
-  <h2>Imóveis para Venda</h2>
-  <div class="property-grid">
-
-    <div class="property-card reserved">
-  <span class="ribbon">Reservado</span>
-  <img src="img/moita.jpeg" alt="Moradia Moita">
-  <div class="card-body">
-    <h3>Moradia T2 na Moita do Norte - VNBarquinha</h3>
-    <p class="price">152.000€</p>
-    <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF135&id=679996" target="_blank" class="btn">Saber Mais</a>
-  </div>
-</div>
-
-    <div class="property-card">
-      <img src="img/residencial.JPG" alt="Residencial Sesimbra">
-      <div class="card-body">
-        <h3>Residencial com 7 suites e Restauração - Sesimbra</h3>
-        <p class="price">630.000€</p>
-        <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF111&id=659755" target="_blank" class="btn">Saber Mais</a>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="novoindex.html">
+        <img src="img/Logo.png" alt="Logotipo Classe25" width="42" height="42" class="me-2">
+        <span class="fw-semibold">Classe25 Solutions</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="novoindex.html#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="novoindex.html#estudos">Estudos de Mercado</a></li>
+          <li class="nav-item"><a class="nav-link" href="imoveis_venda.html">Imóveis</a></li>
+          <li class="nav-item"><a class="nav-link" href="novoindex.html#sobre">Sobre Mim</a></li>
+          <li class="nav-item"><a class="nav-link" href="novoindex.html#contacto">Contacto</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div class="property-card">
-      <img src="img/moradiasesimbra.JPG" alt="Moradia T4 - Caixas, Sesimbra">
-      <div class="card-body">
-        <h3>Moradia T4 - Caixas, Sesimbra</h3>
-        <p class="price">530.000€</p>
-        <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF110&id=659754" target="_blank" class="btn">Saber Mais</a>
+  <!-- HERO -->
+  <header class="hero-slim mt-5 pt-5">
+    <div class="container">
+      <span class="badge-pill">Carteira</span>
+      <h1 class="mt-3">Imóveis para Venda</h1>
+      <p class="text-muted">Lista atualizada de imóveis disponíveis. Os imóveis com reserva ativa surgem identificados.</p>
+    </div>
+  </header>
+
+  <!-- CONTADORES -->
+  <section class="py-3">
+    <div class="container">
+      <div class="row g-3 stats-row">
+        <div class="col-6 col-md-3">
+          <div class="stat">
+            <div class="stat-icon">🏠</div>
+            <div>
+              <div class="stat-value" id="count-disponiveis">0</div>
+              <div class="stat-label">Disponíveis</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat">
+            <div class="stat-icon">⏳</div>
+            <div>
+              <div class="stat-value" id="count-reservados">0</div>
+              <div class="stat-label">Reservados</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    
+  <!-- LISTA DE IMÓVEIS -->
+<section class="py-4">
+  <div class="container">
+    <div class="property-grid">
+
+      <!-- CARD RESERVADO -->
+      <div class="flip-card" data-status="reservado">
+        <!-- a etiqueta fica posicionada no canto por cima do card -->
+        <span class="ribbon-reservado">Reservado</span>
+
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front">
+            <img src="img/moita.jpeg" alt="moradia">
+            <div class="property-body">
+              <h5>Moradia T2 na Moita do Norte</h5>
+              <div class="location">Vila Nova da Barquinha</div>
+              <div class="d-flex gap-3 small text-muted mb-2">
+                <span>🛏 2</span><span>🛁 2</span><span>📐 82 m²</span>
+              </div>
+              <div class="price">€ 152.000</div>
+            </div>
+            <!-- seta para virar -->
+            <button class="flip-toggle" type="button" aria-label="Ver descrição">➜</button>
+          </div>
+
+          <!-- Verso -->
+          <div class="flip-card-back">
+            <p>Moradia T2 remodelada em Moita do Norte, com logradouro, cozinha equipada e 2 quartos. 
+              Localização central, perto de comércio e serviços, pronta a habitar. 
+              Descubra mais informações no site ao clicar em Saiba Mais.</p>
+            <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF135&id=679996" target="_blank" class="btn-saiba">Saiba Mais</a>
+            <!-- seta para voltar -->
+            <button class="flip-toggle" type="button" aria-label="Voltar">↩</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD EXEMPLO (DISPONÍVEL) -->
+      <div class="flip-card" data-status="disponivel">
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front">
+            <img src="img/residencial.JPG" alt="Moradia térrea na Moita">
+            <div class="property-body">
+              <h5>Residencial com 7 suites e Restauração</h5>
+              <div class="location">Sesimbra</div>
+              <div class="d-flex gap-3 small text-muted mb-2">
+                <span>🛏 7</span><span>🛁 11</span><span>📐 593 m²</span>
+              </div>
+              <div class="price">€ 630.000</div>
+            </div>
+            <!-- seta para virar -->
+            <button class="flip-toggle" type="button" aria-label="Ver descrição">➜</button>
+          </div>
+
+          <!-- Verso -->
+          <div class="flip-card-back">
+            <p>Moradia com 7 suites no Centro de Sesimbra, ideal para restauração ou alojamento. 
+              R/C com restaurante, cozinha e arrumos; 1º piso com suíte independentes. 
+              Em bom estado estrutural, em zona tranquila e bem posicionada entre a Serra da Arrábida e o mar. 
+              Descubra todos os detalhes no site ao clicar em Saiba Mais.</p>
+            <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF111&id=659755" target="_blank" class="btn-saiba">Saiba Mais</a>
+            <!-- seta para voltar -->
+            <button class="flip-toggle" type="button" aria-label="Voltar">↩</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD EXEMPLO (DISPONÍVEL) -->
+      <div class="flip-card" data-status="disponivel">
+        <div class="flip-card-inner">
+          <!-- Frente -->
+          <div class="flip-card-front">
+            <img src="img/moradiasesimbra.JPG" alt="Moradia térrea na Moita">
+            <div class="property-body">
+              <h5>Moradia T4 - Caixas</h5>
+              <div class="location">Sesimbra</div>
+              <div class="d-flex gap-3 small text-muted mb-2">
+                <span>🛏 4</span><span>🛁 </span><span>📐 266 m²</span>
+              </div>
+              <div class="price">€ 530.000</div>
+            </div>
+            <!-- seta para virar -->
+            <button class="flip-toggle" type="button" aria-label="Ver descrição">➜</button>
+          </div>
+
+          <!-- Verso -->
+          <div class="flip-card-back">
+            <p>Moradia T4 em Caixas, Sesimbra (266 m²), com enorme potencial para investimento. 
+              Estrutura sólida, exige remodelação completa com projeto já aprovado. 
+              Dispõe de espaço exterior com possibilidade de piscina. 
+              Localização privilegiada entre Arrábida e Sesimbra, a minutos das praias e bons acessos. 
+              Descubra todos os detalhes no site ao clicar em Saiba Mais.</p>
+            <a href="https://www.decisoesesolucoes.com/propriedade/?ref=DSTNVMF110&id=659754" target="_blank" class="btn-saiba">Saiba Mais</a>
+            <!-- seta para voltar -->
+            <button class="flip-toggle" type="button" aria-label="Voltar">↩</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <img src="img/logo-grupo-desafios.png" alt="Grupo Desafios" class="footer-logo">
-      <p><strong>Classe25 Real State Solutions</strong></p>
-      <p>Uma equipa da Desafios de Escolha, Mediação Imobiliária Lda. / AMI 9449</p>
-    </div>
-    <div class="footer-right">
-      <p><strong>Contactos</strong></p>
-      <p>📞 <a href="tel:+351912383894">+351 912 383 894</a></p>
-      <p>✉️ <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">miguelfigueiredo@decisoesesolucoes.com</a></p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2">
+        <img src="img/Logo.png" alt="Classe25 Solutions" width="36" height="36">
+        <span class="fw-semibold">Classe25 Solutions</span>
+      </div>
+      <div>
+        <img src="img/logo-ds.png" alt="Decisões e Soluções">
+      </div>
+      <div class="footer-note small">
+        Desafios de Escolha, Mediação Imobiliária Lda | LIC AMI 9449 | Intermediário de Crédito Vinculado junto do Banco de Portugal
+        Nº3327 verificável em https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda
       </div>
     </div>
-  </div>
-  <p class="footer-note">&copy; 2025 Classe25 Real State Solutions Team. Todos os direitos reservados.</p>
-</footer>
+  </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const counts = { disponivel: 0, reservado: 0 };
+      document.querySelectorAll('[data-status]').forEach(el => {
+        const s = el.getAttribute('data-status');
+        if (counts[s] != null) counts[s]++;
+      });
+      document.getElementById('count-disponiveis').textContent = counts.disponivel;
+      document.getElementById('count-reservados').textContent = counts.reservado;
+    });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.flip-card').forEach(card => {
+    card.querySelectorAll('.flip-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        card.classList.toggle('flipped'); // <<< coloca a classe no .flip-card (o PAI)
+      });
+    });
+  });
+
+  // contadores
+  const counts = { disponivel: 0, reservado: 0 };
+  document.querySelectorAll('.flip-card[data-status]').forEach(el => {
+    const s = el.getAttribute('data-status');
+    if (counts[s] != null) counts[s]++;
+  });
+  const d = document.getElementById('count-disponiveis');
+  const r = document.getElementById('count-reservados');
+  if (d) d.textContent = counts.disponivel;
+  if (r) r.textContent = counts.reservado;
+});
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
