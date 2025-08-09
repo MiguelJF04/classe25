@@ -1,1088 +1,505 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
 <head>
-<meta charset="UTF-8">
-<title>Classe25 Real State Solutions Team</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="bootstrap.min.css">
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link rel="icon" href="img/Logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
-
-<style>
-
-/* === ESTILO GERAL E CORES === */
-
-html {
-  scroll-behavior: smooth;
-}
-
-:root {
-  --primary-color: #c1a24b; /* dourado suave */
-  --dark-color: #003300;    /* verde escuro institucional */
-  --light-bg: #f9f9f9;
-  --transition-speed: 0.3s;
-
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  background-color: var(--light-bg);
-  scroll-behavior: smooth;
-  margin: 0;  
-  margin-top: 70px; /* espaço para header fixo */
-}
-
-/* === HEADER === */
-header {
-  background-color: var(--dark-color);
-  padding: 12px 0;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header a, header span {
-  color: #fff !important;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* === NAVBAR - Cabeçalho === */
-.nav-link {
-  color: white !important;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #c1a24b !important;
-  background-color: transparent !important;
-}
-
-/* === HERO SECTION COM IMAGEM === */
-.hero-section {
-  position: relative;
-  height: 85vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.carousel-images {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400%;
-  height: 100%;
-  display: flex;
-  animation: slide 20s infinite ease-in-out;
-  z-index: 0;
-}
-
-.carousel-images img {
-  width: 100vw;
-  height: 85vh;
-  object-fit: cover;
-  flex: 0 0 100vw;
-  display: block;
-  filter: brightness(90%) contrast(105%); /* Imagem mais nítida e clara */
-}
-
-.overlay {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.25); /* Menos escuro */
-  backdrop-filter: none; /* Remover blur */
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  color: white;
-  max-width: 90%;
-  padding: 0 20px;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 15px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  font-family: 'Poppins', sans-serif;
-}
-
-.hero-content p {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-@keyframes slide {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }
-  25%  { transform: translateX(-100vw); }
-  45%  { transform: translateX(-100vw); }
-  50%  { transform: translateX(-200vw); }
-  70%  { transform: translateX(-200vw); }
-  75%  { transform: translateX(-300vw); }
-  95%  { transform: translateX(-300vw); }
-  100% { transform: translateX(0); }
-}
-
-/* === BOTÕES === */
-.btn-primary, .btn {
-  background-color: var(--primary-color);
-  border: none;
-  color: #333 !important;
-  transition: background-color var(--transition-speed), transform var(--transition-speed);
-}
-
-.btn-primary:hover, .btn:hover {
-  background-color: #c1a24b;
-  transform: translateY(-2px);
-}
-
-/* === ESTRUTURA PADRÃO === */
-section {
-  padding: 80px 20px;
-}
-
-h2 {
-  color: var(--primary-color);
-  margin-bottom: 40px;
-  text-align: center;
-  font-weight: bold;
-}
-
-footer {
-  background-color: var(--dark-color);
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.map-container iframe {
-  width: 100%;
-  height: 400px;
-  border: none;
-}
-
-/* === BOTÕES DE REDES SOCIAIS === */
-.social-icons a {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  margin: 0 5px;
-  background-color: #003300; /* fundo verde escuro */
-  color: white;
-  text-align: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  font-size: 18px;
-}
-
-.social-icons a:hover {
-  background-color: #c1a24b; /* dourado suave */
-  color: #003300;
-}
-
-
-.img-fluid {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-form .form-control {
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s;
-}
-
-form .form-control:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 5px rgba(240, 231, 208, 0.5);
-}
-
-form .btn {
-  background-color: var(--primary-color);
-  border: none;
-  color: #333;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-form .btn:hover {
-  background-color: #c1a24b;
-  transform: translateY(-2px);
-}
-
-/* === SOBRE NÓS === */
-#about {
-  padding: 60px 0;
-  background-color: #f9f9f9;
-}
-
-.about-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.left-side, .right-side {
-  flex: 1 1 450px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Alinha verticalmente ao centro */
-  align-items: flex-start; /* Alinha à esquerda */
-  gap: 20px; /* Espaço entre imagem, botões e texto */
-}
-
-.left-side img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-height: 250px;
-  object-fit: cover;
-}
-
-.tab-content {
-  max-width: 100%;
-}
-
-.left-inner {
-  padding-top: 0;
-}
-
-.tab-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  padding: 10px 20px;
-  border: none;
-  background-color: #e0e0e0;
-  color: #333;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.tab-btn.active {
-  background-color: #c1a24b;
-  color: #333;
-}
-
-.tab-content .tab-panel {
-  display: none;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.tab-panel.active {
-  display: block;
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultor Imobiliário | Classe25 Solutions</title>
+  <meta name="description" content="Consultor imobiliário: estudos de mercado validados por perito avaliador inscrito na CMVM, intermediação de crédito, acompanhamento personalizado e seguros.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Consultor Imobiliário | Classe25 Solutions">
+  <meta property="og:description" content="Estudos de mercado de qualidade validados por perito avaliador (CMVM) + soluções completas para comprar ou vender casa.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="img/Logo.png">
+  <meta property="og:locale" content="pt_PT">
+  <link rel="icon" type="image/png" href="img/Logo.png">
+
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root{--primary:#c1a24b;--dark:#003300;--bg:#f9f9f9;--radius:14px}
+    html{scroll-behavior:smooth}
+    body{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:#333}
+
+    /* Navbar */
+    .navbar{background:var(--dark)}
+    .navbar .nav-link, .navbar-brand{color:#fff !important}
+    .navbar .nav-link:hover{color:var(--primary) !important}
+
+    /* Hero */
+    .hero{position:relative;min-height:80vh;display:flex;align-items:center;background:url('img/cidade3.jpeg') center/cover no-repeat}
+    .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
+    .hero .content{position:relative;z-index:1;color:#fff}
+    .badge-pill{background:var(--primary);color:#111;border-radius:999px;padding:.5rem 1rem;font-weight:700}
 
-.tab-panel h3 {
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.tab-panel p {
-  color: #555;
-  line-height: 1.6;
-}
-
-.right-side h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-  color: #c1a24b;
-}
-
-.right-side p {
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
+    /* Sections */
+    .section{padding:80px 0}
+    .section-title{font-weight:700;margin-bottom:12px}
+    .section-sub{color:#666;margin-bottom:28px}
 
-.right-side img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+    /* Cards */
+    .card{border:none;border-radius:var(--radius);box-shadow:0 10px 26px rgba(0,0,0,.08)}
+    .card .icon{font-size:34px}
 
-.left-side img {
-  max-height: 260px;
-  object-fit: cover;
-}
+    /* CTA buttons */
+    .btn-primary{background:var(--primary);border:none;color:#222;font-weight:600}
+    .btn-primary:hover{filter:brightness(1.05)}
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
+    /* Property promo */
+    .promo{background:#fff;border-radius:var(--radius);box-shadow:0 10px 26px rgba(0,0,0,.08);padding:24px}
 
-/* === EFEITOS DE INTERAÇÃO === */
-a, button {
-  transition: all 0.3s ease;
-}
+    /* Footer */
+    footer{background:var(--dark);color:#fff}
+    .footer-note{color:#cfd6cf}
 
-.brand-title {
-  color: white;
-  font-weight: 600;
-  font-size: 18px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-a:hover, button:hover {
-  transform: scale(1.05);
-  background-color: transparent;
-  color: #c1a24b;
+    footer img {
+  height: 50px;   /* aumenta a altura do logo */
+  width: auto;    /* mantém proporção */
 }
-
-
-a:focus, button:focus {
-  outline: 2px solid #c1a24b; 
+
+@media (max-width: 768px) {
+  footer img {
+    height: 40px; /* um pouco menor no telemóvel para não ocupar muito espaço */
+  }
 }
 
-.footer-note {
-  font-size: 0.85rem;
-  color: #ccc;
-  margin-top: 5px;
+footer .d-flex.align-items-center.gap-2 {
+  gap: 12px; /* mais espaço entre logo e texto */
 }
 
 
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(20px); }
-}
-
-/* ======FOOTER======== */
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: auto;
-  gap: 40px;
-  padding: 20px 0; /* Reduzir altura do footer */
-  font-size: 0.9rem; /* Reduz o tamanho da letra */
-  line-height: 1.4;
-}
 
-.footer-left,
-.footer-right {
-  flex: 1 1 300px;
-}
+    /* Utilities */
+    .text-primary-brand{color:var(--primary)!important}
+    .bg-primary-brand{background:var(--primary)!important}
 
-.footer-left {
-  text-align: left;
-}
+    /* Responsive tweaks */
+    @media (max-width: 575.98px){
+      .hero{min-height:70vh}
+      .display-4{font-size:2rem}
+    }
 
-.footer-right {
-  text-align: right;
+    /* Sobre Mim*/
+    #sobre img {
+  max-width: 100%;       /* Garante que não estoura o container */
+  height: auto;          /* Mantém proporção */
+  max-height: 320px;     /* Limita a altura máxima */
+  object-fit: cover;     /* Corta o excesso mantendo o enquadramento */
 }
-
-.footer-logo {
-  width: 100px; /* ligeiramente menor */
-  margin-bottom: 10px;
+@media (min-width: 768px) {
+  #sobre img {
+    width: 80%;          /* Ajusta a percentagem para maior ou menor */
+    max-height: 320px;
+    object-fit: cover;
+  }
 }
 
-.footer-right a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
+        /* Footer */
 
-.footer-right a:hover {
-  color: var(--primary-color);
+    .imoveis-cta{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:0 12px 28px rgba(0,0,0,.08);padding:28px
 }
-
-footer .social-icons {
-  margin-top: 10px;
+.imoveis-hero{position:relative;border-radius:var(--radius);overflow:hidden}
+.imoveis-hero img{display:block;width:100%;height:320px;object-fit:cover;transition:transform .35s ease}
+.imoveis-hero:hover img{transform:scale(1.03)}
+.ribbon{
+  position:absolute;top:12px;left:12px;
+  background:var(--primary);color:#111;font-weight:700;
+  padding:6px 10px;border-radius:999px;font-size:.85rem
 }
-
-footer .social-icons a {
-  background-color: #fff;
-  color: #003300;
-  margin-left: 10px;
-  width: 36px;
-  height: 36px;
-  display: inline-block;
-  line-height: 36px;
-  text-align: center;
-  border-radius: 50%;
-  transition: 0.3s;
-  font-size: 16px;
+.stats-row .stat{
+  display:flex;gap:10px;align-items:center;background:#f7f7f7;
+  border-radius:12px;padding:10px 12px;height:100%
 }
+.stat-icon{font-size:22px}
+.stat-value{font-weight:700;line-height:1}
+.stat-label{font-size:.85rem;color:#666;margin-top:2px}
 
-footer .social-icons a:hover {
-  background-color: var(--primary-color);
-  color: #003300;
+.thumbs{display:flex;gap:10px}
+.thumbs img{
+  width:96px;height:72px;object-fit:cover;border-radius:10px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08)
 }
 
-.footer-note {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 0.8rem;
-  color: #ccc;
-  padding-bottom: 10px;
+/* Responsivo */
+@media (max-width: 575.98px){
+  .imoveis-hero img{height:220px}
+  .thumbs{gap:8px}
+  .thumbs img{width:86px;height:64px}
 }
-
 
-/*===========PORTEFÓLIO================*/
+        /* Contactos */
 
-#portfolio {
-  background-color: #f5f5f5;
-  padding: 80px 20px;
+        .contact-list{
+  list-style: none; padding: 0; margin: 0 0 16px 0;
+  display: flex; flex-direction: column; gap: 10px;
 }
-
-#portfolio h2 {
-  color: var(--primary-color);
-  margin-bottom: 20px;
+.contact-list li{
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border-radius: var(--radius);
+  padding: 12px 14px; box-shadow: 0 6px 18px rgba(0,0,0,.06);
 }
-
-#portfolio p {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 40px;
+.contact-list .ci{font-size: 18px; line-height: 1}
+.contact-list a{
+  text-decoration: none; color: #333; font-weight: 500;
 }
+.contact-list a:hover{color: var(--primary)}
+/* empurra o botão WhatsApp para a direita na mesma linha do telefone */
+.contact-list li .ms-auto{margin-left:auto}
 
-.portfolio-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+.contact-list{
+  list-style:none; padding:0; margin:0 0 16px 0;
+  display:flex; flex-direction:column; gap:10px;
 }
-
-.portfolio-buttons .btn {
-  padding: 15px 30px;
-  font-size: 1rem;
+.contact-list li{
+  display:flex; align-items:center; gap:12px;
+  background:#fff; border-radius:var(--radius);
+  padding:12px 14px; box-shadow:0 6px 18px rgba(0,0,0,.06);
 }
+.contact-list .ci{font-size:18px; line-height:1}
+.contact-list a{ text-decoration:none; color:#333; font-weight:500 }
+.contact-list a:hover{ color:var(--primary) }
 
-.hero-text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.1rem;
-}
+/* empilhar no mobile; lado a lado em desktop já fica por causa das col-lg-* */
 
 
-</style>
+  </style>
 </head>
-
 <body>
 
-  <header>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a href="#" class="d-flex align-items-center" aria-label="Ir para a página inicial">
-        <img src="img/Logo.png" alt="Logotipo" width="45">
-        <span class="brand-title ms-2">Classe25 Real State Solutions Team</span>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="img/Logo.png" alt="Logotipo Classe25" width="42" height="42" class="me-2">
+        <span class="fw-semibold">Classe25 Solutions</span>
       </a>
-      <nav aria-label="Navegação principal">
-        <ul class="nav">
-          <li class="nav-item"><a href="#contact" class="nav-link">Entre em Contacto</a></li>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menu">
+        <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="#estudos">Estudos de Mercado</a></li>
+          <li class="nav-item"><a class="nav-link" href="#imoveis">Imóveis</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Mim</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
         </ul>
-      </nav>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container content py-5">
+      <span class="badge-pill">Consultor Imobiliário</span>
+      <h1 class="display-4 fw-bold mt-3">Apoio total na compra e venda de imóveis</h1>
+      <p class="lead mb-4">Onde os imóveis certos encontram os clientes certos.</p>
+      <div class="d-flex flex-wrap gap-2">
+        <a href="#contacto" class="btn btn-primary btn-lg">Fale comigo</a>
+        <a href="#imoveis" class="btn btn-outline-light btn-lg">Ver imóveis</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero-section" role="banner">
-  <div class="carousel-images">
-    <img src="img/cidade1.png" alt="Cidade 1">
-    <img src="img/cidade2.png" alt="Cidade 2">
-    <img src="img/cidade3.jpeg" alt="Cidade 3">
-    <img src="img/cidade4.png" alt="Cidade 4">
-  </div>
-  <div class="overlay"></div>
-  <div class="hero-content">
-  <h1>Classe25 Real Estate Solutions</h1>
-  <p class="hero-text">Mediação imobiliária com confiança, proximidade e soluções personalizadas.</p>
-<p class="hero-text lead">Explore os imóveis disponíveis e comprove os negócios já concretizados com confiança e transparência.</p>
-
-    <div class="portfolio-buttons">
-      <a href="imoveis_venda.html" class="btn btn-lg">🏡 Imóveis para Venda</a>
-      <a href="imoveis_vendidos.html" class="btn btn-lg">✅ Imóveis Vendidos</a>
-</div>
-
-</section>
-
-    <section id="about">
-      <div class="about-wrapper">
-        <!-- Coluna Esquerda: Missão, Valores, Visão -->
-        <div class="left-side">
-  <img src="img/missao.png" alt="Missão, Valores e Visão" class="img-fluid">
-  
-  <div class="tab-buttons">
-    <button class="tab-btn active" data-tab="missao">📘 Missão</button>
-    <button class="tab-btn" data-tab="valores">🧭 Valores</button>
-    <button class="tab-btn" data-tab="visao">🔭 Visão</button>
-  </div>
-  
-  <div class="left-inner">
-    <div class="tab-content">
-      <div id="missao" class="tab-panel active">
-        <h3>A Nossa Missão</h3>
-        <p>
-          Prestar um serviço de excelência em mediação e consultoria imobiliária, com base no conhecimento académico e
-          experiência no setor, promovendo soluções integradas para acompanhar cada cliente em todas as fases do processo.
-        </p>
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Serviços</h2>
+        <p class="section-sub">Soluções completas para compradores e vendedores</p>
       </div>
-      <div id="valores" class="tab-panel">
-        <h3>Os Nossos Valores</h3>
-        <p>
-          Ética, confiança, identidade e cultura são os pilares do nosso trabalho. Valorizamos o compromisso com o cliente,
-          a colaboração em equipa e a procura constante pela excelência.
-        </p>
-      </div>
-      <div id="visao" class="tab-panel">
-        <h3>A Nossa Visão</h3>
-        <p>
-          Ser uma referência nacional no setor imobiliário, integrando mediação, avaliação e construção com inovação e rigor.
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-        <!-- Coluna Direita: Sobre Nós -->
-        <div class="right-side">
-          <h2>Sobre Nós</h2>
-<p>
-  A Classe25 Real Estate Solutions é uma equipa dinâmica e dedicada, do Grupo Desafios da empresa Decisões e Soluções, uma das maiores redes de consultoria imobiliária e financeira em Portugal. 
-  Atuamos maioritariamente na região centro do país, oferecendo um acompanhamento próximo, transparente e personalizado em todas as fases do processo de compra, venda ou arrendamento de imóveis.
-  A nossa missão é transformar projetos em realidade, com base na confiança, no profissionalismo e numa abordagem centrada nas necessidades de cada cliente.
-</p>
-
-          <img src="img/about.png" alt="Ilustração sobre o nosso trabalho">
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <div class="icon mb-3">🏠</div>
+              <h5 class="card-title fw-semibold">Estudos de Mercado</h5>
+              <p class="card-text">Relatórios detalhados por zona, tipologia e tendências, com métricas de preço e absorção.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <div class="icon mb-3">📊</div>
+              <h5 class="card-title fw-semibold">Análise de Investimento</h5>
+              <p class="card-text">Estimativas de rentabilidade, cenários e risco — suporte para investidores.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <div class="icon mb-3">🤝</div>
+              <h5 class="card-title fw-semibold">Acompanhamento Personalizado</h5>
+              <p class="card-text">Do primeiro contacto à escritura, com negociação e documentação orientadas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 p-3">
+            <div class="card-body">
+              <div class="icon mb-3">💼</div>
+              <h5 class="card-title fw-semibold">Intermediação de Crédito & Seguros</h5>
+              <p class="card-text">Soluções competitivas com parceiros certificados, adaptadas ao seu perfil.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    
-    
-    <section id="contact">
+    </div>
+  </section>
+
+  <!-- ESTUDOS DE MERCADO VALIDADOS (CMVM) -->
+  <section id="estudos" class="section bg-white">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <img src="img/about.png" alt="Estudos de mercado imobiliário" class="img-fluid rounded-4 shadow">
+        </div>
+        <div class="col-lg-6">
+          <span class="text-primary-brand fw-bold">Confiança e Rigor</span>
+          <h2 class="section-title mt-2">Estudos de mercado validados por perito avaliador (CMVM)</h2>
+          <p class="mb-3">Os meus estudos de mercado são elaborados com base em dados atualizados do setor, cruzando fontes públicas e privadas. A validação é assegurada em colaboração com uma empresa parceira com <b>perito avaliador inscrito na CMVM</b>, garantindo padrões profissionais de qualidade e conformidade.</p>
+          <ul class="mb-4">
+            <li>Metodologia transparente e replicável</li>
+            <li>Análises por zona, tipologia e período</li>
+            <li>Indicadores-chave: preço médio, €/m², tempo de venda, absorção</li>
+          </ul>
+          <a href="#contacto" class="btn btn-primary">Solicitar um estudo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMÓVEIS (CTA) -->
+  
+  <section id="imoveis" class="section">
   <div class="container">
-    <h1 class="text-center mb-5">Entre em Contacto</h1>
-    <div class="row align-items-center">
-      
-      <!-- Coluna do Texto Informativo -->
-      <div class="col-md-8 mt-4 mt-md-0">
-        <div class="p-4 bg-light rounded shadow-sm h-100 d-flex flex-column justify-content-center">
-          <h5 class="mb-3">📞 Contacte-nos</h5>
-          <p>Pronto para tomar decisões mais informadas com base em dados sólidos?</p>
-          <strong>Entre em contacto connosco hoje mesmo.</strong></p>
-          
-          <p class="mt-3 mb-0">
-            📞 (+351) 912 383 894 <br>
-            📧 miguelfigueiredo@decisoesesolucoes.com
-          </p>
+    <div class="imoveis-cta">
+      <div class="row g-4 align-items-center">
+        <!-- Preview / imagem -->
+        <div class="col-lg-5">
+          <div class="imoveis-hero">
+            <img src="img/missao.png" alt="Carteira de imóveis" class="img-fluid">
+          </div>
+        </div>
+
+        <!-- Texto + ações -->
+        <div class="col-lg-7">
+          <span class="text-primary-brand fw-bold">Carteira</span>
+          <h3 class="mt-1 mb-2">Imóveis disponíveis e casos de sucesso</h3>
+          <p class="text-muted mb-4">Explora oportunidades em carteira e consulta imóveis já vendidos para perceber o tipo de resultados que entrego.</p>
+
+          <!-- Mini-estatísticas -->
+          <div class="row g-3 stats-row mb-4">
+  <div class="col-6 col-md-4">
+    <div class="stat"><div class="stat-icon">🏠</div>
+      <div><div class="stat-value" id="count-disponiveis">0</div>
+      <div class="stat-label">imóveis disponíveis</div></div>
+    </div>
+  </div>
+  <div class="col-6 col-md-4">
+    <div class="stat"><div class="stat-icon">✅</div>
+      <div><div class="stat-value" id="count-vendidos">0</div>
+      <div class="stat-label">imóveis vendidos</div></div>
+    </div>
+  </div>
+  <div class="col-6 col-md-4">
+    <div class="stat"><div class="stat-icon">⏳</div>
+      <div><div class="stat-value" id="count-reservados">0</div>
+      <div class="stat-label">imóveis reservados</div></div>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Ações -->
+          <div class="d-flex flex-wrap gap-2">
+  <a href="imoveis_venda.html" class="btn btn-primary" style="background-color:#bfa043; border-color:#bfa043;">Ver imóveis para venda</a>
+  <a href="imoveis_vendidos.html" class="btn btn-success">Ver imóveis vendidos</a>
+  <a href="#contacto" class="btn btn-info text-white">Quero avaliar o meu imóvel</a>
+</div>
+
+
+          <!-- Mini-thumbnails (opcional) -->
+          <div class="thumbs mt-4">
+            <img src="img/moita.jpeg" alt="Apartamento T2" loading="lazy">
+            <img src="img/apeentronct3.jpg" alt="Moradia V3" loading="lazy">
+            <img src="img/moradia.png" alt="Terreno urbano" loading="lazy">
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Coluna do Formulário (mais pequena) -->
-      <div class="col-md-4">
-        <form target="_blank" action="https://formsubmit.co/migueljeronimofigueiredo@gmail.com" method="POST">
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col">
-                <input type="text" name="name" class="form-control" placeholder="Nome" required>
+
+  <!-- SOBRE MIM (podes editar o texto; se não quiseres esta secção, removo já) -->
+  <section id="sobre" class="section bg-white">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-5">
+          <img src="img/perfil.jpg" alt="Fotografia do consultor imobiliário" class="img-fluid rounded-4 shadow">
+        </div>
+        <div class="col-md-7">
+          <h2 class="section-title">Sobre mim</h2>
+          <p>Sou consultor imobiliário na <b>Decisões e Soluções – Torres Novas</b>. Trabalho diariamente para maximizar o valor dos imóveis dos meus clientes, com foco em estratégia, dados e serviço personalizado.</p>
+          <p><b>Percurso académico</b>: (ex.: Licenciatura em Informática de Gestão – ISLA). <br> <b>Especialização</b>: análise de investimentos, estudos de mercado e dashboards de apoio à decisão.</p>
+          <div class="mt-3">
+            <a href="#contacto" class="btn btn-primary">Marcar uma reunião</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section">
+<div class="container">
+    <div class="row g-4">
+      <!-- CONTACTOS (esquerda) -->
+      <div class="col-lg-5">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-sub">Vamos falar sobre o seu objetivo imobiliário.</p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="ci">✉️</span>
+            <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">
+              miguelfigueiredo@decisoesesolucoes.com
+            </a>
+          </li>
+          <li>
+            <span class="ci">📞</span>
+            <a href="tel:+351912383894">+351 912 383 894</a>
+          </li>
+          <li>
+            <span class="ci">🔗</span>
+            <a href="https://www.linkedin.com/in/miguel-figueiredo-08934928b/" target="_blank" rel="noopener">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <span class="ci">🔗</span>
+            <a href="https://www.facebook.com/miguel.figueiredo.5688" target="_blank" rel="noopener">
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- FORMULÁRIO (direita) -->
+      <div class="col-lg-7">
+        <div class="card p-4">
+          <h5 class="mb-3">Entrar em contacto</h5>
+          <form action="#" method="post">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control" placeholder="O seu nome" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="nome@dominio.pt" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Mensagem</label>
+                <textarea class="form-control" rows="4" placeholder="Como posso ajudar?" required></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100" type="submit">Enviar</button>
               </div>
             </div>
-            <div class="form-row mt-2">
-              <div class="col">
-                <input type="email" name="email" class="form-control" placeholder="Email" required>
-              </div>
-            </div>
-          </div>
-          <div class="form-group mt-3">
-            <textarea placeholder="A sua mensagem" class="form-control" name="message" rows="6" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-lg btn-dark mt-3 w-100">Enviar</button>
-        </form>
+          </form>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-</main>
-
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <img src="imagens/logo-desafios.png" alt="Grupo Desafios" class="footer-logo" />
-      <p><strong>Classe25 Real Estate Solutions</strong></p>
-      <p>Mediação Imobiliária, Consultoria e Apoio ao Investimento</p>
-      <p>Desafios de Escolha, Mediação Imobiliária Lda. / AMI 9449</p>
-      <p>Torres Novas | Santarém</p>
+  <!-- FOOTER -->
+<footer class="py-4">
+  <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 text-center text-lg-start">
+    
+    <!-- Branding -->
+    <div class="d-flex align-items-center gap-2">
+      <img src="img/Logo.png" alt="Classe25 Solutions" width="36" height="36">
+      <span class="fw-semibold">Classe25 Solutions</span>
     </div>
 
-    <div class="footer-right">
-      <p><strong>Contactos</strong></p>
-      <p>📞 <a href="tel:+351912383894">+351 912 383 894</a></p>
-      <p>✉️ <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">miguelfigueiredo@decisoesesolucoes.com</a></p>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/miguel.figueiredo.5688"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/_.miguelfigueiredo._/"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/miguel-figueiredo-08934928b/"><i class="fab fa-linkedin-in"></i></a>
-      </div>
+    <!-- DS logo opcional -->
+    <div>
+      <img src="img/logo-ds.png" alt="Decisões e Soluções" class="logo-ds">
+
     </div>
+    
+    <!-- Informações legais -->
+    <div class="footer-note small">
+      <strong>Desafios de Escolha, Mediação Imobiliária Lda</strong> | LIC AMI 9449 | Intermediário de Crédito Vinculado junto do Banco de Portugal Nº3327 verificável em 
+      <a href="https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda" target="_blank" rel="noopener">
+        Banco de Portugal
+    </a>
+      https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda
+    </div>
+    
   </div>
-
-  <p class="footer-note">&copy; 2025 Classe25. Todos os direitos reservados.</p>
 </footer>
 
 
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/351912383894" class="position-fixed" style="right:18px;bottom:18px;background:#25d366;color:#fff;padding:12px 14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 22px rgba(0,0,0,.16);z-index:1030" aria-label="Contactar via WhatsApp">WhatsApp</a>
 
-</body>
+  <script>
+    // Ano no footer
+    document.addEventListener('DOMContentLoaded',()=>{
+      const y = document.getElementById('year');
+      if(y) y.textContent = new Date().getFullYear();
+    });
 
+    // Atualizar o número de imóveis
 
-
-<!-- Chatbot flutuante 
-<div id="chatbot">
-  <div id="chatbot-toggle" role="button" aria-label="Abrir chatbot">💬</div>
-  <div id="chatbot-window">
-    <div id="chatbot-header">Ajuda Rápida</div>
-    <div id="chatbot-keywords-wrapper">
-  <div id="chatbot-keywords-header">Palavras-chave</div>
-  <div id="chatbot-keywords-container">
-    <button class="arrow-button" onclick="scrollKeywords(-1)">&#9664;</button>
-    <div id="chatbot-keywords">
-      <span class="keyword">preço</span>
-      <span class="keyword">investimento</span>
-      <span class="keyword">mercado</span>
-      <span class="keyword">contacto</span>
-      <span class="keyword">base de dados</span>
-      <span class="keyword">ferramenta</span>
-      <span class="keyword">avaliação</span>
-      <span class="keyword">rentabilidade</span>
-      <span class="keyword">zona</span>
-      <span class="keyword">consultor</span>
-      <span class="keyword">documentação</span>
-      <span class="keyword">simulador</span>
-      <span class="keyword">dashboard</span>
-      <span class="keyword">ajuda</span>
-    </div>
-    <button class="arrow-button" onclick="scrollKeywords(1)">&#9654;</button>
-  </div>
-</div>
-
-
-
-    <div id="chatbot-messages"></div>
     
+async function atualizarContagens(){
+  const counts = { disponivel:0, reservado:0, vendido:0 };
+  const fontes = [
+    { url: 'imoveis_venda.html' },     // contém disponíveis e reservados
+    { url: 'imoveis_vendidos.html' }   // contém vendidos
+  ];
 
-    <input type="text" id="chatbot-input" placeholder="Escreva uma palavra...">
-    <button id="chatbot-send">Enviar</button>
-  </div>
-</div>
-
-<style>
-  /* === Chatbot Flutuante === */
-#chatbot {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  font-family: Arial, sans-serif;
-}
-
-/* === Botão Redondo === */
-#chatbot-toggle {
-  background-color: rgb(142, 122, 73);
-  color: white;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  font-size: 32px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-#chatbot-toggle:hover {
-  transform: rotate(45deg);
-  background-color: rgb(142, 122, 73);
-}
-
-/* === Janela do Chat === */
-#chatbot-window {
-  width: 320px;
-  max-height: 80vh;
-  height: auto;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#chatbot-window.active {
-  display: flex;
-}
-
-/* === Cabeçalho === */
-#chatbot-header {
-  background-color: rgb(172, 149, 94);
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* === Mensagens === */
-#chatbot-messages {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  background-color: #f8f8f8;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* === Balões de conversa === */
-.chatbot-user,
-.chatbot-bot {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.chatbot-user {
-  flex-direction: row-reverse;
-}
-
-.chatbot-message {
-  padding: 8px 15px;
-  border-radius: 15px;
-  max-width: 70%;
-  word-wrap: break-word;
-}
-
-.chatbot-user .chatbot-message {
-  background-color: #e0f7fa;
-  color: #333;
-}
-
-.chatbot-bot .chatbot-message {
-  background-color: #967d4f;
-  color: #fff;
-}
-
-.chatbot-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin: 5px;
-}
-
-/* === Palavras-chave === */
-#chatbot-keywords-wrapper {
-  background-color: #f8f8f8;
-  padding: 8px 10px 5px 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-#chatbot-keywords-header {
-  font-size: 13px;
-  font-weight: bold;
-  color: #6e5e3e;
-  margin-bottom: 6px;
-}
-
-#chatbot-keywords-container {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  overflow: hidden;
-}
-
-#chatbot-keywords {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  flex: 1;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-}
-
-#chatbot-keywords::-webkit-scrollbar {
-  display: none;
-}
-
-.keyword {
-  background-color: #ddd;
-  color: #333;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.keyword:hover {
-  background-color: #c2b18c;
-}
-
-.arrow-button {
-  background-color: transparent;
-  border: none;
-  font-size: 18px;
-  color: #967d4f;
-  cursor: pointer;
-  padding: 4px 6px;
-  user-select: none;
-}
-
-/* === Sugestões rápidas === */
-.chat-suggestions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  flex-wrap: wrap;
-}
-
-.chat-suggestions button {
-  background-color: rgb(172, 149, 94);
-  border: none;
-  padding: 6px 16px;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.2s ease;
-}
-
-.chat-suggestions button:hover {
-  background-color: #bba77c;
-}
-
-/* === Input e botão de envio === */
-#chatbot-input {
-  border: 1px solid #ccc;
-  padding: 12px;
-  width: calc(100% - 90px);
-  font-size: 14px;
-  border-radius: 25px;
-  transition: border-color 0.3s ease;
-  margin: 5px;
-}
-
-#chatbot-send {
-  background-color: rgb(172, 149, 94);
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 25px;
-  cursor: pointer;
-  margin: 5px;
-  transition: background-color 0.2s ease;
-}
-
-#chatbot-send:hover {
-  background-color: #bba77c;
-}
-
-
-
-/* === Responsivo (opcional) === */
-@media (max-width: 480px) {
-  #chatbot-window {
-    width: 95vw;
-    max-height: 85vh;
-  }
-}
-
-
-
-</style>
-
-<script>
-  const toggle = document.getElementById('chatbot-toggle');
-  const windowChat = document.getElementById('chatbot-window');
-  const sendBtn = document.getElementById('chatbot-send');
-  const input = document.getElementById('chatbot-input');
-  const messages = document.getElementById('chatbot-messages');
-
-  const avatarBot = "https://cdn-icons-png.flaticon.com/512/4712/4712107.png";
-  const avatarUser = "https://cdn-icons-png.flaticon.com/512/1144/1144760.png";
-
-  const respostas = {
-  "preço": "O preço é definido com base no mercado atual, localização e características do imóvel.",
-  "investimento": "Investimento é a aplicação de capital com expectativa de retorno financeiro. Podemos ajudar a simular diferentes cenários.",
-  "mercado": "O mercado imobiliário varia consoante a procura, oferta e zona geográfica. Use o nosso dashboard para explorar dados.",
-  "contacto": "Pode contactar-nos através do <a href='#contact'>formulário</a> ou pelas redes sociais.",
-  "base de dados": "A nossa base de dados inclui todos os imóveis disponíveis com detalhes atualizados.",
-  "ferramenta": "Utilize as ferramentas do site para calcular rentabilidade, simular cenários e comparar imóveis.",
-  "avaliação": "A avaliação estima o valor de um imóvel com base em dados comparativos e tendências de mercado.",
-  "rentabilidade": "A rentabilidade representa o retorno do investimento, geralmente expresso em percentagem anual.",
-  "zona": "A localização é um dos fatores que mais influencia o valor e o potencial de valorização de um imóvel.",
-  "consultor": "Os nossos consultores especializados estão prontos para o apoiar na escolha do melhor investimento.",
-  "documentação": "A documentação necessária inclui certidão permanente, licença de utilização e caderneta predial.",
-  "simulador": "O simulador permite calcular retorno esperado, custos e prazos de investimento. Experimente na nossa secção de ferramentas.",
-  "dashboard": "O dashboard interativo apresenta dados sobre preço médio, número de imóveis e rentabilidade por zona.",
-  "ajuda": "Pode escrever palavras como 'preço', 'rentabilidade', 'consultor' ou 'dashboard'. Estamos aqui para ajudar!"
-};
-
-
-  toggle.addEventListener('click', () => {
-    windowChat.classList.toggle('active');
-  });
-
-  sendBtn.addEventListener('click', enviarMensagem);
-  input.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      enviarMensagem();
-    }
-  });
-
-  function enviarTexto(texto) {
-    input.value = texto;
-    enviarMensagem();
-  }
-
-  function enviarMensagem() {
-    const texto = input.value.trim();
-    if (texto === "") return;
-
-    adicionarMensagem(texto, 'user');
-
-    let resposta = "Desculpe, não reconheço essa palavra. Tente escrever algo como 'preço', 'rentabilidade', 'zona' ou 'dashboard'.";
-
-
-    for (const palavra in respostas) {
-      if (texto.toLowerCase().trim() === palavra.toLowerCase()) {
-        resposta = respostas[palavra];
-        break;
-      }
-    }
-
-    setTimeout(() => {
-      adicionarMensagem(resposta, 'bot');
-    }, 500);
-
-    input.value = "";
-  }
-
-  function adicionarMensagem(texto, tipo) {
-    const container = document.createElement('div');
-    container.className = tipo === 'user' ? 'chatbot-user' : 'chatbot-bot';
-
-    const avatar = document.createElement('img');
-    avatar.src = tipo === 'user' ? avatarUser : avatarBot;
-    avatar.className = 'chatbot-avatar';
-
-    const message = document.createElement('div');
-    message.className = 'chatbot-message';
-    message.innerHTML = texto;
-
-    if (tipo === 'user') {
-      container.appendChild(message);
-      container.appendChild(avatar);
-    } else {
-      container.appendChild(avatar);
-      container.appendChild(message);
-    }
-
-    messages.appendChild(container);
-    messages.scrollTop = messages.scrollHeight;
-  }
-</script>
-
-
-
-
-
-
-
-
-<script>
-  // JS simples para troca de tabs
-  const tabs = document.querySelectorAll(".tab-btn");
-  const panels = document.querySelectorAll(".tab-panel");
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(btn => btn.classList.remove("active"));
-      panels.forEach(panel => panel.classList.remove("active"));
-
-      tab.classList.add("active");
-      const target = document.getElementById(tab.dataset.tab);
-      target.classList.add("active");
+  for (const f of fontes){
+    const res = await fetch(f.url);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    doc.querySelectorAll('[data-status]').forEach(el=>{
+      const s = el.getAttribute('data-status');
+      if (counts[s] != null) counts[s]++;
     });
-  });
-</script>
- 
-<script>
-  document.querySelector('a[href="#contato"]').addEventListener('click', function(e) {
-    e.preventDefault();
-  
-  document.querySelector('#contato').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-});
-</script>
-
-<script>
-  function scrollKeywords(direction) {
-    const keywords = document.getElementById('chatbot-keywords');
-    const scrollAmount = 100;
-    keywords.scrollLeft += direction * scrollAmount;
   }
 
-  // Torna as palavras clicáveis
-  document.querySelectorAll('#chatbot-keywords .keyword').forEach(keyword => {
-    keyword.addEventListener('click', () => {
-      enviarTexto(keyword.textContent.trim());
-    });
+  // preencher
+  const map = {
+    disponivel: 'count-disponiveis',
+    reservado: 'count-reservados',
+    vendido: 'count-vendidos'
+  };
+  Object.entries(map).forEach(([k,id])=>{
+    const el = document.getElementById(id);
+    if (el) el.textContent = counts[k];
   });
-</script>
+}
+document.addEventListener('DOMContentLoaded', atualizarContagens);
 
 
-
-
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
--->
