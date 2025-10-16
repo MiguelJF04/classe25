@@ -170,7 +170,183 @@ footer .d-flex.align-items-center.gap-2 {
 /* empilhar no mobile; lado a lado em desktop já fica por causa das col-lg-* */
 
 
-  </style>
+  
+/* === FIXES: Formulário Contacto (mais à direita, campos maiores, botão dourado) === */
+#contacto .card { border-radius: var(--radius); box-shadow: 0 10px 26px rgba(0,0,0,.08); }
+#contacto .card .form-control {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 14px 16px;
+  font-size: 1rem;
+  width: 100%;
+}
+#contacto .card textarea.form-control { min-height: 160px; resize: none; }
+
+/* deslocar ligeiramente o formulário para a direita em ecrãs grandes */
+@media (min-width: 992px){
+  #contacto .col-lg-7 .card{ margin-left: 32px; }
+}
+
+/* botão com a cor de marca (dourado), forçar sobre regras anteriores */
+#contacto .card form button[type="submit"]{
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #111 !important;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 14px;
+  transition: transform .2s ease, filter .3s ease;
+}
+#contacto .card form button[type="submit"]:hover{
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+/* Formulário contacto */
+#contacto .form-control {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 14px 16px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+#contacto textarea.form-control {
+  min-height: 160px;
+  resize: none;
+}
+
+#contacto .card {
+  border-radius: var(--radius);
+  box-shadow: 0 10px 26px rgba(0,0,0,.08);
+}
+
+#contacto form button[type="submit"] {
+  background: var(--primary);
+  border: none;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 14px;
+  color: #111;
+  font-size: 1.05rem;
+  transition: transform .2s ease, filter .3s ease;
+}
+
+#contacto form button[type="submit"]:hover {
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+}
+
+
+#contacto .card { height: 100%; }
+#contacto .col-lg-5 { display: flex; flex-direction: column; justify-content: center; }
+
+
+
+
+/* ===== Fade/slide on scroll (ativo sempre) ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease-out, transform .45s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* opções extra (podes aplicar em data-reveal="left" ou "right") */
+.reveal[data-reveal="left"] { transform: translateX(-24px); }
+.reveal[data-reveal="right"] { transform: translateX(24px); }
+.reveal.visible[data-reveal="left"],
+.reveal.visible[data-reveal="right"] { transform: translateX(0); }
+
+/* acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* Testemunhos — cartões e avatar */
+.testimonial-card{
+  background:#fff;border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.08);
+  padding:18px 18px 16px; height:100%;
+}
+.t-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.avatar{
+  width:46px; height:46px; border-radius:50%;
+  display:grid; place-items:center; font-weight:700; color:#113; 
+  background:linear-gradient(135deg,#fff7e0,#ffe29a);
+  border:2px solid #c1a24b22;
+}
+.t-name{ font-weight:700; line-height:1; }
+.t-loc{ font-size:.9rem; color:#666; }
+.t-text{ margin:10px 0 8px; color:#333; font-style:italic; }
+.t-stars{ color:#f5c518; letter-spacing:1px; }
+
+/* Carousel: melhorar indicadores/controles */
+#testimonialsCarousel .carousel-indicators [data-bs-target]{
+  width:9px;height:9px;border-radius:50%;
+  background:#c1a24b; opacity:.35;
+}
+#testimonialsCarousel .carousel-indicators .active{ opacity:1; }
+#testimonialsCarousel .carousel-control-prev-icon,
+#testimonialsCarousel .carousel-control-next-icon{ filter: invert(1); }
+
+/* Respeitar acessibilidade: menos movimento se preferido */
+@media (prefers-reduced-motion: reduce){
+  #testimonialsCarousel { animation: none !important; }
+}
+
+
+.section-testemunhos{ position:relative; }
+.section-testemunhos::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:2px;
+  background:linear-gradient(90deg, transparent, #c1a24b, transparent);
+  opacity:.35;
+}
+
+
+/* FAQ look & feel */
+#faq .accordion-item { border: none; box-shadow: 0 10px 26px rgba(0,0,0,.06); border-radius: var(--radius); margin-bottom: 14px; overflow: hidden; }
+#faq .accordion-button { font-weight: 600; }
+#faq .accordion-button:focus { box-shadow: none; }
+#faq .accordion-button:not(.collapsed) { background: #fff7e0; color: #333; }
+#faq .accordion-body { background:#fff; }
+
+/* 5 cartões equilibrados */
+@media (min-width: 1200px){
+  .col-lg-2_4 { flex: 0 0 19%; max-width: 19.6%; } /* ~5 colunas */
+}
+.card .icon { font-size: 2rem; } /* ícones um pouco maiores */
+.card { transition: transform .25s ease, box-shadow .25s ease; }
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+/* Serviços — alinhar tudo e equalizar alturas */
+#servicos .card .card-body{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+
+#servicos .card-title{
+  text-align:center; line-height:1.25; margin-bottom:8px;
+}
+
+/* em desktop, força a mesma altura nos títulos e descrições */
+@media (min-width:1200px){
+  #servicos .card-title{ min-height: 52px; }   /* 2 linhas confortáveis */
+  #servicos .card-text{  min-height: 96px; }   /* mesma “caixa” em todos */
+}
+
+.contact-list .ci {
+  font-size: 20px;
+  color: #c1a24b;
+}
+
+
+</style>
 </head>
 <body>
 
@@ -199,7 +375,7 @@ footer .d-flex.align-items-center.gap-2 {
   <!-- HERO -->
   <header class="hero">
     <div class="container content py-5">
-      <span class="badge-pill">Consultor Imobiliário</span>
+      <span class="badge-pill">Consultor Imobiliário & Gestor de Seguros</span>
       <h1 class="display-4 fw-bold mt-3">Apoio total na compra e venda de imóveis</h1>
       <p class="lead mb-4">Onde os imóveis certos encontram os clientes certos.</p>
       <div class="d-flex flex-wrap gap-2">
@@ -216,46 +392,71 @@ footer .d-flex.align-items-center.gap-2 {
         <h2 class="section-title">Serviços</h2>
         <p class="section-sub">Soluções completas para compradores e vendedores</p>
       </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <div class="icon mb-3">🏠</div>
-              <h5 class="card-title fw-semibold">Estudos de Mercado</h5>
-              <p class="card-text">Relatórios detalhados por zona, tipologia e tendências, com métricas de preço e absorção.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <div class="icon mb-3">📊</div>
-              <h5 class="card-title fw-semibold">Análise de Investimento</h5>
-              <p class="card-text">Estimativas de rentabilidade, cenários e risco — suporte para investidores.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <div class="icon mb-3">🤝</div>
-              <h5 class="card-title fw-semibold">Acompanhamento Personalizado</h5>
-              <p class="card-text">Do primeiro contacto à escritura, com negociação e documentação orientadas.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="card h-100 p-3">
-            <div class="card-body">
-              <div class="icon mb-3">💼</div>
-              <h5 class="card-title fw-semibold">Intermediação de Crédito & Seguros</h5>
-              <p class="card-text">Soluções competitivas com parceiros certificados, adaptadas ao seu perfil.</p>
-            </div>
-          </div>
-        </div>
+    <div class="row g-4 justify-content-center">
+  <!-- Estudos de Mercado -->
+  <div class="col-md-6 col-lg-2_4">
+    <div class="card h-100 p-4 text-center">
+      <div class="card-body">
+        <div class="icon mb-3 fs-2">🏠</div>
+        <h5 class="card-title fw-semibold">Estudos de Mercado</h5>
+        <p class="card-text">Relatórios detalhados por zona, tipologia e tendências.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Análise de Investimento -->
+  <div class="col-md-6 col-lg-2_4">
+    <div class="card h-100 p-4 text-center">
+      <div class="card-body">
+        <div class="icon mb-3 fs-2">📊</div>
+        <h5 class="card-title fw-semibold">Análise de Investimento</h5>
+        <p class="card-text">Estimativas de rentabilidade e suporte a decisões.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acompanhamento Personalizado -->
+  <div class="col-md-6 col-lg-2_4">
+    <div class="card h-100 p-4 text-center">
+      <div class="card-body">
+        <div class="icon mb-3 fs-2">🤝</div>
+        <h5 class="card-title fw-semibold">Acompanhamento Personalizado</h5>
+        <p class="card-text">Apoio completo até à escritura, com foco em resultados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intermediação de Crédito -->
+  <div class="col-md-6 col-lg-2_4">
+    <div class="card h-100 p-4 text-center">
+      <div class="card-body">
+        <div class="icon mb-3 fs-2">🏦</div>
+        <h5 class="card-title fw-semibold">Crédito Habitação</h5>
+        <p class="card-text">Em parceria com <b>intermediária certificada</b> pelo Banco de Portugal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gestão de Seguros -->
+  <div class="col-md-6 col-lg-2_4">
+    <div class="card h-100 p-4 text-center">
+      <div class="card-body">
+        <div class="icon mb-3 fs-2">🛡️</div>
+        <h5 class="card-title fw-semibold">Gestão de Seguros</h5>
+        <p class="card-text">Consultoria e gestão de seguros de vida, habitação e saúde.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
       </div>
     </div>
   </section>
+
+ 
 
   <!-- ESTUDOS DE MERCADO VALIDADOS (CMVM) -->
   <section id="estudos" class="section bg-white">
@@ -341,85 +542,350 @@ footer .d-flex.align-items-center.gap-2 {
   </div>
 </section>
 
+   <!-- TESTEMUNHOS (nova versão) -->
+<section class="section-testemunhos section">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">O que dizem os meus clientes</h2>
+      <p class="section-sub">Provas sociais de quem já trabalhou comigo</p>
+    </div>
 
-  <!-- SOBRE MIM (podes editar o texto; se não quiseres esta secção, removo já) -->
-  <section id="sobre" class="section bg-white">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-md-5">
-          <img src="img/perfil.png" alt="Fotografia do consultor imobiliário" class="img-fluid rounded-4 shadow">
-        </div>
-        <div class="col-md-7">
-          <h2 class="section-title">Sobre mim</h2>
-          <p>Sou consultor imobiliário na <b>Decisões e Soluções – Torres Novas</b>. Trabalho diariamente para maximizar o valor dos imóveis dos meus clientes, com foco em estratégia, dados e serviço personalizado.</p>
-          <p><b>Percurso académico</b>: - Licenciatura em Informática de Gestão – ISLA Santarém <br> 
-            <b>Outras Experiências</b>: - Técnico Avaliação Imobiliária em Avalimóvel Consultoria & Avaliações<br>
-                - Gestor de Seguros </p>
-          <div class="mt-3">
-            <a href="#contacto" class="btn btn-primary">Marcar uma reunião</a>
+    <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000" data-bs-pause="hover">
+      <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+          <div class="row g-4">
+            <!-- card -->
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">MJ</div>
+                  <div>
+                    <div class="t-name">Maria J.</div>
+                    <div class="t-loc">Tomar</div>
+                  </div>
+                </div>
+                <p class="t-text">“Excelente acompanhamento em todo o processo de venda. Comunicação clara e resultados.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">VF</div>
+                  <div>
+                    <div class="t-name">Vitor F</div>
+                    <div class="t-loc">V.N. Barquinha</div>
+                  </div>
+                </div>
+                <p class="t-text">“Estudo de mercado muito completo e profissional. Ajudou a definir o preço certo.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
+            <!-- card -->
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">JP</div>
+                  <div>
+                    <div class="t-name">João P.</div>
+                    <div class="t-loc">Golegã</div>
+                  </div>
+                </div>
+                <p class="t-text">“Transparência, rigor e empatia. Recomendo vivamente.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">FJ</div>
+                  <div>
+                    <div class="t-name">Francisco J.</div>
+                    <div class="t-loc">Entroncamento</div>
+                  </div>
+                </div>
+                <p class="t-text">“Processo simples e objetivo. O acompanhamento fez toda a diferença.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">TS</div>
+                  <div>
+                    <div class="t-name">Tiago S.</div>
+                    <div class="t-loc">Entroncamento</div>
+                  </div>
+                </div>
+                <p class="t-text">“Negociação muito bem conduzida. Cumpriu prazos e expectativas.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="testimonial-card">
+                <div class="t-head">
+                  <div class="avatar">AD</div>
+                  <div>
+                    <div class="t-name">António D.</div>
+                    <div class="t-loc">Entroncamento</div>
+                  </div>
+                </div>
+                <p class="t-text">“Profissionalismo e disponibilidade desde o primeiro contacto.”</p>
+                <div class="t-stars" aria-label="5 em 5 estrelas">★★★★★</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- SOBRE MIM -->
+<section id="sobre" class="section bg-white">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      
+      <!-- FOTO -->
+      <div class="col-md-5 text-center">
+        <img src="img/perfil.png" alt="Fotografia do consultor imobiliário" class="img-fluid rounded-4 shadow">
+      </div>
+
+      <!-- TEXTO -->
+      <div class="col-md-7">
+        <h2 class="section-title mb-3">Sobre mim</h2>
+        <p>
+          Sou consultor imobiliário na <b>Decisões e Soluções – Torres Novas / Entroncamento E.Leclerc</b>. 
+          Trabalho diariamente para maximizar o valor dos imóveis dos meus clientes, 
+          com foco em <b>estratégia, dados e serviço personalizado</b>.
+        </p>
+
+        <div class="bg-light p-3 rounded-3 shadow-sm mt-4">
+          <h6 class="fw-bold mb-2 text-dark">Percurso académico</h6>
+          <p class="mb-2">🎓 Licenciado em <b>Informática de Gestão</b> – ISLA Santarém</p>
+
+          <h6 class="fw-bold mb-2 text-dark">Experiência profissional</h6>
+          <ul class="mb-0" style="list-style:none; padding:0;">
+            <li>🏠 Técnico de <b>Avaliação Imobiliária</b> na empresa Avalimóvel Consultoria & Avaliações</li>
+            <li>💼 Gestor de <b>Seguros</b> - Distance Learning Consulting (Certificado pela ASF)</li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <a href="#contacto" class="btn btn-primary" 
+             style="background-color:#c1a24b; border:none; font-weight:600;">
+            Marcar uma reunião
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section bg-white reveal">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">Perguntas Frequentes</h2>
+      <p class="section-sub">Respostas rápidas sobre avaliação, venda e acompanhamento</p>
+    </div>
+
+    <div class="accordion" id="faqAccordion">
+      <!-- 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="false" aria-controls="a1">
+            Como é feita a avaliação/estudo de mercado do meu imóvel?
+          </button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Recolho comparáveis recentes por zona e tipologia, cruzo fontes públicas/privadas e aplico métricas como €/m², desconto médio e tempo de absorção. 
+            O relatório é <b>validado por perito avaliador (CMVM)</b> em parceria, garantindo rigor e transparência.
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+            Quanto tempo demora, em média, vender um imóvel?
+          </button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Depende da zona, preço e tipologia. Com preço alinhado ao mercado e plano de marketing, o objetivo é reduzir o <i>time-to-sell</i> maximizando valor.
+            Partilho sempre um intervalo estimado no estudo de mercado.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+            Quais os custos de mediação e quando são cobrados?
+          </button>
+        </h2>
+        <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            A comissão é acordada por contrato e apenas cobrada em caso de sucesso (venda). 
+            Explico todas as condições antes de avançarmos, sem surpresas.
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+            Apoias no crédito habitação?
+          </button>
+        </h2>
+        <div id="a4" class="accordion-collapse collapse" aria-labelledby="q4" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Sim. Trabalho em <b>colaboração com uma intermediária de crédito certificada</b> da Decisões e Soluções, e acompanha todo o processo de crédito habitação, garantindo um serviço completo e transparente.
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 5 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
+            O que incluis no plano de marketing do meu imóvel?
+          </button>
+        </h2>
+        <div id="a5" class="accordion-collapse collapse" aria-labelledby="q5" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Fotografias profissionais, copy orientado a conversão, distribuição multicanal, gestão de leads, qualificação de compradores e <b>negociação assistida</b>.
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6" aria-expanded="false" aria-controls="a6">
+            Como começamos?
+          </button>
+        </h2>
+        <div id="a6" class="accordion-collapse collapse" aria-labelledby="q6" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Fazemos uma chamada ou reunião para alinhar objetivos, preparo o <b>estudo de mercado</b> e apresento estratégia e cronograma.
+            <a href="#contacto" class="btn btn-sm btn-primary ms-2">Marcar reunião</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
   <!-- CONTACTO -->
-  <section id="contacto" class="section">
-<div class="container">
-    <div class="row g-4">
+<section id="contacto" class="section">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      
       <!-- CONTACTOS (esquerda) -->
-      <div class="col-lg-5">
-        <h2 class="section-title">Contacto</h2>
-        <p class="section-sub">Vamos falar sobre o seu objetivo imobiliário.</p>
+      <div class="col-lg-5 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="section-title">Contacto</h2>
+          <p class="section-sub">Vamos falar sobre o seu objetivo imobiliário.</p>
 
-        <ul class="contact-list">
-          <li>
-            <span class="ci">✉️</span>
-            <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">
-              miguelfigueiredo@decisoesesolucoes.com
-            </a>
-          </li>
-          <li>
-            <span class="ci">📞</span>
-            <a href="tel:+351912383894">+351 912 383 894</a>
-          </li>
-          <li>
-            <span class="ci">🔗</span>
-            <a href="https://www.linkedin.com/in/miguel-figueiredo-08934928b/" target="_blank" rel="noopener">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <span class="ci">🔗</span>
-            <a href="https://www.facebook.com/miguel.figueiredo.5688" target="_blank" rel="noopener">
-              Facebook
-            </a>
-          </li>
-        </ul>
+          <ul class="contact-list">
+  <li>
+    <span class="ci">✉️</span>
+    <a href="mailto:miguelfigueiredo@decisoesesolucoes.com">miguelfigueiredo@decisoesesolucoes.com</a>
+  </li>
+  <li>
+    <span class="ci">📞</span>
+    <a href="tel:+351912383894">+351 912 383 894</a>
+  </li>
+  <li>
+    <span class="ci">Ⓕ</span>
+    <a href="https://www.facebook.com/miguel.figueiredo.5688" target="_blank" rel="noopener">Facebook</a>
+  </li>
+  <li>
+    <span class="ci">Ⓛ</span>
+    <a href="https://www.linkedin.com/in/miguel-figueiredo-08934928b/" target="_blank" rel="noopener">LinkedIn</a>
+  </li>
+  <li>
+    <span class="ci">⌾</span>
+    <a href="https://www.instagram.com/_miguel_consultor_/" target="_blank" rel="noopener">Instagram</a>
+  </li>
+</ul>
+
+        </div>
       </div>
 
       <!-- FORMULÁRIO (direita) -->
       <div class="col-lg-7">
-        <div class="card p-4">
+        <div class="card h-100 p-4 d-flex flex-column justify-content-center">
           <h5 class="mb-3">Entrar em contacto</h5>
-          <form action="#" method="post">
+
+          <!-- Mensagem de sucesso -->
+          <div id="contact-success" class="alert alert-success d-none" role="alert">
+            ✅ Obrigado! Recebi a tua mensagem. Vou responder em breve.
+          </div>
+
+          <form id="contactForm" action="https://formsubmit.co/ajax/migueljeronimofigueiredo@gmail.com" method="POST" novalidate>
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label">Nome</label>
-                <input type="text" class="form-control" placeholder="O seu nome" required>
+                <input type="text" name="name" class="form-control" placeholder="Nome" required>
               </div>
               <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" placeholder="nome@dominio.pt" required>
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
               </div>
               <div class="col-12">
-                <label class="form-label">Mensagem</label>
-                <textarea class="form-control" rows="4" placeholder="Como posso ajudar?" required></textarea>
+                <select name="assunto" class="form-control" required>
+                  <option value="" disabled selected>Escolhe o assunto</option>
+                  <option>Quero avaliar o meu imóvel</option>
+                  <option>Quero vender um imóvel</option>
+                  <option>Quero comprar um imóvel</option>
+                  <option>Quero simular crédito habitação (com apoio da especialista parceira)</option>
+                  <option>Seguros</option>
+                  <option>Outro assunto</option>
+                </select>
               </div>
               <div class="col-12">
-                <button class="btn btn-primary w-100" type="submit">Enviar</button>
+                <textarea id="msg" name="message" class="form-control" rows="6" required>Olá Miguel,
+
+O meu objetivo é: [ex.: vender / comprar / avaliar / crédito / seguros].
+Localização (se aplicável): [ex.: Torres Novas].
+Prazo/urgência: [ex.: 3 meses].
+Orçamento (opcional): [ex.: 150.000€].
+Preferência de contacto: [telefone / email] e melhor horário: [ex.: 18h–20h].
+
+Obrigado/a.
+                </textarea>
+              </div>
+              <div class="col-12">
+                <button id="contactSubmit" type="submit" class="btn w-100">Enviar</button>
               </div>
             </div>
+
+            <!-- Definições FormSubmit -->
+            <input type="hidden" name="_subject" value="Novo contacto — Classe25 Solutions">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Olá! Recebi a tua mensagem. Vou responder em breve. Obrigado pelo contacto — Miguel, Classe25 Solutions.">
+            <input type="text" name="_honey" style="display:none">
           </form>
         </div>
       </div>
@@ -428,33 +894,37 @@ footer .d-flex.align-items-center.gap-2 {
   </div>
 </section>
 
-  <!-- FOOTER -->
-<footer class="py-4">
-  <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center gap-3 text-center text-lg-start">
-    
-    <!-- Branding -->
-    <div class="d-flex align-items-center gap-2">
-      <img src="img/Logo.png" alt="Classe25 Solutions" width="36" height="36">
-      <span class="fw-semibold">Classe25 Solutions</span>
-    </div>
 
-    <!-- DS logo opcional -->
-    <div>
-      <img src="img/logo-ds.png" alt="Decisões e Soluções" class="logo-ds">
+
 
     </div>
-    
-    <!-- Informações legais -->
-    <div class="footer-note small">
-      <strong>Desafios de Escolha, Mediação Imobiliária Lda</strong> | LIC AMI 9449 | Intermediário de Crédito Vinculado junto do Banco de Portugal Nº3327 verificável em 
-      <a href="https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda" target="_blank" rel="noopener">
-        Banco de Portugal
-    </a>
-      https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda
-    </div>
-    
   </div>
-</footer>
+</section>
+
+  <!-- FOOTER -->
+<footer class="py-4 text-center" style="background:#003300; color:#fff;">
+  <div class="container d-flex flex-column align-items-center gap-2">
+
+    <!-- Logos e nome -->
+    <div class="d-flex justify-content-center align-items-center gap-3 mb-2 flex-wrap">
+      <img src="img/Logo.png" alt="Classe25 Solutions" width="42" height="42">
+      <span class="fw-semibold fs-5">Classe25 Solutions</span>
+      <img src="img/logo-ds.png" alt="Decisões e Soluções" style="height:46px; width:auto;">
+      <span class="fw-semibold fs-5">Decisões e Soluções - Grupo Desafios</span>
+    </div>
+
+    
+
+    <!-- Texto legal -->
+    <div class="footer-note small" style="color:#cfd6cf; line-height:1.5; font-size:0.85rem; max-width:100%;">
+      Desafios de Escolha, Mediação Imobiliária Lda | LIC AMI 9449 | 
+      Intermediário de Crédito Vinculado junto do Banco de Portugal Nº3327 verificável em "https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda"  
+      <a href="https://www.bportugal.pt/intermediariocreditofar/desafios-de-escolha-mediacao-imobiliaria-lda" 
+         target="_blank" rel="noopener" 
+         style="color:#c1a24b; text-decoration:none;">
+         (ver)
+      </a>
+    </div>
 
 
   <!-- WhatsApp Floating Button -->
@@ -501,7 +971,108 @@ async function atualizarContagens(){
 document.addEventListener('DOMContentLoaded', atualizarContagens);
 
 
-  </script>
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const reveals = document.querySelectorAll('.reveal');
+
+  function checkVisibility() {
+    const windowHeight = window.innerHeight;
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const visible = rect.top < windowHeight * 0.85 && rect.bottom > 0;
+      el.classList.toggle('visible', visible);
+    });
+  }
+
+  window.addEventListener('scroll', checkVisibility);
+  window.addEventListener('resize', checkVisibility);
+  checkVisibility(); // corre logo ao carregar
+});
+
+document.querySelectorAll('.section, .card, .hero, .property-grid > *')
+  .forEach(el => el.classList.add('reveal'));
+
+
+// Rotação automática dos testemunhos
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.testemunho');
+  let index = 0;
+  setInterval(() => {
+    items[index].classList.remove('active');
+    index = (index + 1) % items.length;
+    items[index].classList.add('active');
+  }, 4000); // muda a cada 4 segundos
+});
+ </script>
+
+  <script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+  {"@type":"Question","name":"Como é feita a avaliação/estudo de mercado do meu imóvel?","acceptedAnswer":{"@type":"Answer","text":"Recolho comparáveis por zona e tipologia, cruzo fontes públicas/privadas e aplico métricas como €/m², desconto médio e tempo de absorção. O relatório é validado por perito avaliador (CMVM) em parceria."}},
+  {"@type":"Question","name":"Quanto tempo demora, em média, vender um imóvel?","acceptedAnswer":{"@type":"Answer","text":"Depende de zona, preço e tipologia. Com preço alinhado e plano de marketing, o objetivo é reduzir o time-to-sell maximizando valor. Partilho um intervalo estimado no estudo de mercado."}},
+  {"@type":"Question","name":"Quais os custos de mediação e quando são cobrados?","acceptedAnswer":{"@type":"Answer","text":"A comissão é acordada por contrato e apenas cobrada em caso de sucesso (venda). Todas as condições são explicadas previamente."}},
+  {"@type":"Question","name":"Apoias no crédito habitação?","acceptedAnswer":{"@type":"Answer","text":"Sim. Trabalho em <b>colaboração com uma intermediária de crédito certificada</b> da Decisões e Soluções, e acompanha todo o processo de crédito habitação, garantindo um serviço completo e transparente."}},
+  {"@type":"Question","name":"O que incluis no plano de marketing do meu imóvel?","acceptedAnswer":{"@type":"Answer","text":"Fotografia profissional, copy orientado a conversão, distribuição multicanal, gestão de leads, qualificação e negociação assistida."}},
+  {"@type":"Question","name":"Como começamos?","acceptedAnswer":{"@type":"Answer","text":"Agendamos uma reunião, preparo o estudo de mercado e apresento estratégia e cronograma."}}
+]}
+</script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form   = document.getElementById('contactForm');
+  const submit = document.getElementById('contactSubmit');
+  const okBox  = document.getElementById('contact-success');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // UX: desativar botão enquanto envia
+    submit.disabled = true;
+    submit.textContent = 'A enviar...';
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' }});
+
+      if (res.ok) {
+        // mostrar confirmação e limpar campos
+        okBox.classList.remove('d-none');
+        form.reset();
+        // opcional: voltar a colocar a mensagem modelo no textarea
+        const tpl = `Olá Miguel,
+
+O meu objetivo é: [ex.: vender / comprar / avaliar / crédito / seguros].
+Localização (se aplicável): [ex.: Torres Novas].
+Prazo/urgência: [ex.: 3 meses].
+Orçamento (opcional): [ex.: 150.000€].
+Preferência de contacto: [telefone / email] e melhor horário: [ex.: 18h–20h].
+
+Obrigado/a.`;
+        const msg = document.getElementById('msg');
+        if (msg) msg.value = tpl;
+
+        // esconder mensagem de sucesso ao fim de alguns segundos (opcional)
+        setTimeout(() => okBox.classList.add('d-none'), 7000);
+      } else {
+        alert('Ups, ocorreu um erro ao enviar. Tenta novamente mais tarde.');
+      }
+    } catch (err) {
+      alert('Não foi possível enviar agora. Tenta novamente em instantes.');
+    } finally {
+      submit.disabled = false;
+      submit.textContent = 'Enviar';
+    }
+  });
+});
+</script>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
