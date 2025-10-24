@@ -835,36 +835,43 @@ footer .d-flex.align-items-center.gap-2 {
       </div>
 
       <!-- FORMULÁRIO (direita) -->
-      <div class="col-lg-7">
-        <div class="card h-100 p-4 d-flex flex-column justify-content-center">
-          <h5 class="mb-3">Entrar em contacto</h5>
+<div class="col-lg-7">
+  <div class="card h-100 p-4 d-flex flex-column justify-content-center">
+    <h5 class="mb-3">Entrar em contacto</h5>
 
-          <!-- Mensagem de sucesso -->
-          <div id="contact-success" class="alert alert-success d-none" role="alert">
-            ✅ Obrigado! Recebi a tua mensagem. Vou responder em breve.
-          </div>
+    <!-- Mensagem de sucesso -->
+    <div id="contact-success" class="alert alert-success d-none" role="alert">
+      ✅ Obrigado! Recebi a tua mensagem. Vou responder em breve.
+    </div>
 
-          <form id="contactForm" action="https://formsubmit.co/ajax/migueljeronimofigueiredo@gmail.com" method="POST" novalidate>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Nome" required>
-              </div>
-              <div class="col-md-6">
-                <input type="email" name="email" class="form-control" placeholder="Email" required>
-              </div>
-              <div class="col-12">
-                <select name="assunto" class="form-control" required>
-                  <option value="" disabled selected>Escolhe o assunto</option>
-                  <option>Quero avaliar o meu imóvel</option>
-                  <option>Quero vender um imóvel</option>
-                  <option>Quero comprar um imóvel</option>
-                  <option>Quero simular crédito habitação (com apoio da especialista parceira)</option>
-                  <option>Seguros</option>
-                  <option>Outro assunto</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <textarea id="msg" name="message" class="form-control" rows="6" required>Olá Miguel,
+    <form id="contactForm" action="https://formsubmit.co/ajax/migueljeronimofigueiredo@gmail.com" method="POST" novalidate>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input type="text" name="name" class="form-control" placeholder="Nome" required>
+        </div>
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+
+        <!-- NOVO CAMPO: Telemóvel -->
+        <div class="col-md-6">
+          <input type="tel" name="phone" class="form-control" placeholder="Telemóvel" pattern="[0-9+ ]{9,15}" required>
+        </div>
+
+        <div class="col-12">
+          <select name="assunto" class="form-control" required>
+            <option value="" disabled selected>Escolhe o assunto</option>
+            <option>Quero avaliar o meu imóvel</option>
+            <option>Quero vender um imóvel</option>
+            <option>Quero comprar um imóvel</option>
+            <option>Quero simular crédito habitação (com apoio da especialista parceira)</option>
+            <option>Seguros</option>
+            <option>Outro assunto</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <textarea id="msg" name="message" class="form-control" rows="6" required>Olá Miguel,
 
 O meu objetivo é: [ex.: vender / comprar / avaliar / crédito / seguros].
 Localização (se aplicável): [ex.: Torres Novas].
@@ -873,22 +880,24 @@ Orçamento (opcional): [ex.: 150.000€].
 Preferência de contacto: [telefone / email] e melhor horário: [ex.: 18h–20h].
 
 Obrigado/a.
-                </textarea>
-              </div>
-              <div class="col-12">
-                <button id="contactSubmit" type="submit" class="btn w-100">Enviar</button>
-              </div>
-            </div>
+          </textarea>
+        </div>
 
-            <!-- Definições FormSubmit -->
-            <input type="hidden" name="_subject" value="Novo contacto — Classe25 Solutions">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_autoresponse" value="Olá! Recebi a tua mensagem. Vou responder em breve. Obrigado pelo contacto — Miguel, Classe25 Solutions.">
-            <input type="text" name="_honey" style="display:none">
-          </form>
+        <div class="col-12">
+          <button id="contactSubmit" type="submit" class="btn w-100">Enviar</button>
         </div>
       </div>
+
+      <!-- Definições FormSubmit -->
+      <input type="hidden" name="_subject" value="Novo contacto — Classe25 Solutions">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="Olá! Recebi a tua mensagem. Vou responder em breve. Obrigado pelo contacto — Miguel, Classe25 Solutions.">
+      <input type="text" name="_honey" style="display:none">
+    </form>
+  </div>
+</div>
+
 
     </div>
   </div>
